@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "u67291";
-$password = "7457542";
-$dbname = "u67291";
+$username = "u67289";
+$password = "3411094";
+$dbname = "u67289";
 
 
 $fio = $phone = $email = $birthdate = $gender = '';
@@ -78,13 +78,13 @@ VALUES ('$fio', '$phone', '$email', '$birthdate', '$gender', '$bio')";
     $lastId = $conn->lastInsertId();
 
     for ($i = 0; $i < count($langs); $i++) {
-        $sql = "SELECT lang_id FROM prog_lang WHERE lang_name = :langName";
+        $sql = "SELECT id_lang FROM Program_language WHERE name_lang = :langName";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':langName', $langs[$i]);
         $stmt->execute();
         $result = $stmt->fetch();
-        $lang_id = $result['lang_id'];
-        $sql = "INSERT INTO request_to_lang (id, id_lang) VALUES ($lastId, $lang_id)";
+        $lang_id = $result['id_lang'];
+        $sql = "INSERT INTO feedback (id, id_lang) VALUES ($lastId, $lang_id)";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
     }
@@ -94,3 +94,4 @@ VALUES ('$fio', '$phone', '$email', '$birthdate', '$gender', '$bio')";
 }
 $conn = null;
 ?>
+
