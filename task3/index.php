@@ -12,7 +12,7 @@ $email = $_POST['email'];
 $birthdate = $_POST['birthdate'];
 $gender = $_POST['gender'];
 $bio = $_POST['bio'];
-$langs = $_POST['progLang'];
+$langs = $_POST['programming-language'];
 $langs_check = ['c', 'c++', 'js', 'java', 'clojure', 'pascal', 'python', 'haskel', 'scala', 'php', 'prolog'];
 function checkLangs($langs, $langs_check) {
     for ($i = 0; $i < count($langs); $i++) {
@@ -94,4 +94,3 @@ VALUES ('$fio', '$phone', '$email', '$birthdate', '$gender', '$bio')";
 }
 $conn = null;
 ?>
-
