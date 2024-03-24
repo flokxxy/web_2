@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <link rel= "stylesheet"  href = "style.css">
     <meta charset="UTF-8">
     <title>Title</title>
@@ -49,6 +50,13 @@
 
         <input type="submit" value="Сохранить">
     </form>
+
+    <?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$_POST["bio"] = htmlspecialchars($_POST["bio"]);
+}
+?>
+    
 </div>
 
 
