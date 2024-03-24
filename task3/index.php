@@ -78,7 +78,7 @@ VALUES ('$fio', '$phone', '$email', '$birthdate', '$gender', '$bio')";
     $lastId = $conn->lastInsertId();
 
     for ($i = 0; $i < count($langs); $i++) {
-        $sql = "SELECT id_lang FROM prog_lang WHERE name_lang = :langName";
+        $sql = "SELECT id_lang FROM Program_language WHERE name_lang = :langName";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':langName', $langs[$i]);
         $stmt->execute();
@@ -94,4 +94,3 @@ VALUES ('$fio', '$phone', '$email', '$birthdate', '$gender', '$bio')";
 }
 $conn = null;
 ?>
-
