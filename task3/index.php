@@ -66,7 +66,13 @@ if ($gender != 'male' && $gender != 'female') {
     print (" mistake in male ");
 }
 
+/*
 if (!checkLangs($langs, $langs_check)) {
+    $errors = TRUE;
+    print (" mistake in check ");
+}*/
+
+if(empty($_POST['contract'])){
     $errors = TRUE;
     print (" mistake in check ");
 }
