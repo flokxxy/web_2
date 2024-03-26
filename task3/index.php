@@ -38,8 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 
 $errors = FALSE;
 
-if (empty($fio) || !preg_match('/^([А-ЯЁ][а-яё]+)\s+([А-ЯЁ][а-яё]+)\s+([А-ЯЁ][а-яё]+)$
-/', $fio)) {
+if (empty($_POST['fio']) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fio'])) {
     $errors = TRUE;
     print (" mistake in fio");
 }
@@ -69,7 +68,7 @@ if ($gender != 'male' && $gender != 'female') {
 
 if (!checkLangs($langs, $langs_check)) {
     $errors = TRUE;
-    print (" mistake in chack");
+    print (" mistake in check");
 }
 
 if ($errors === TRUE) {
