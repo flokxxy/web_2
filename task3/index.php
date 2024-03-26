@@ -14,6 +14,8 @@ $gender = $_POST['gender'];
 $bio = $_POST['bio'];
 $langs = $_POST['programming-language'];
 $langs_check = ['c', 'c++', 'js', 'java', 'clojure', 'pascal', 'python', 'haskel', 'scala', 'php', 'prolog'];
+
+
 function checkLangs($langs, $langs_check) {
     for ($i = 0; $i < count($langs); $i++) {
         $isTrue = FALSE;
@@ -38,28 +40,35 @@ $errors = FALSE;
 
 if (empty($fio) || !preg_match('/^[A-Za-z]+$/', $fio)) {
     $errors = TRUE;
+    print (" mistake in fio");
 }
 
 if (empty($phone) || !preg_match('/^[0-9+]+$/', $phone)) {
     $errors = TRUE;
+    print (" mistake in phone");
 }
 
 if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $errors = TRUE;
+    print (" mistake in mail");
 }
 
 
 $dateObject = DateTime::createFromFormat('Y-m-d', $birthdate);
 if ($dateObject === false || $dateObject->format('Y-m-d') !== $birthdate) {
     $errors = TRUE;
+    print (" mistake in date");
+    //добавить проверку на 0
 }
 
 if ($gender != 'male' && $gender != 'female') {
     $errors = TRUE;
+    print (" mistake in male");
 }
 
 if (!checkLangs($langs, $langs_check)) {
     $errors = TRUE;
+    print (" mistake in chack");
 }
 
 if ($errors === TRUE) {
