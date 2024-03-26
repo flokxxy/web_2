@@ -40,35 +40,35 @@ $errors = FALSE;
 
 if (empty($_POST['fio']) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fio'])) {
     $errors = TRUE;
-    print (" mistake in fio");
+    print (" mistake in fio ");
 }
 
 if (empty($phone) || !preg_match('/^[0-9+]+$/', $phone)) {
     $errors = TRUE;
-    print (" mistake in phone");
+    print (" mistake in phone ");
 }
 
 if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $errors = TRUE;
-    print (" mistake in mail");
+    print (" mistake in mail ");
 }
 
 
 $dateObject = DateTime::createFromFormat('Y-m-d', $birthdate);
 if ($dateObject === false || $dateObject->format('Y-m-d') !== $birthdate) {
     $errors = TRUE;
-    print (" mistake in date");
+    print (" mistake in date ");
     //добавить проверку на 0
 }
 
 if ($gender != 'male' && $gender != 'female') {
     $errors = TRUE;
-    print (" mistake in male");
+    print (" mistake in male ");
 }
 
-if (!checkLangs($langs, $langs_check)) {
+if ($_POST['check']!="on") {
     $errors = TRUE;
-    print (" mistake in check");
+    print (" mistake in check ");
 }
 
 if ($errors === TRUE) {
