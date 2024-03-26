@@ -66,7 +66,7 @@ if ($gender != 'male' && $gender != 'female') {
     print (" mistake in male ");
 }
 
-if ($_POST['check']!="on") {
+if (!checkLangs($langs, $langs_check)) {
     $errors = TRUE;
     print (" mistake in check ");
 }
