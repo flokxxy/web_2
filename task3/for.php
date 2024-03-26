@@ -28,7 +28,7 @@
         <label for="female">Женский</label>
 
         <label for="programming-language">Любимый язык программирования:</label>
-        <select id="programming-language" name="programming-language" multiple required>
+        <select id="programming-language" name="programming-language[]" multiple required>
             <option value="Pascal">Pascal</option>
             <option value="C">C</option>
             <option value="C++">C++</option>
