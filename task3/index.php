@@ -38,7 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 
 $errors = FALSE;
 
-if (empty($fio) || !preg_match('/^[A-Za-z]+$/', $fio)) {
+if (empty($fio) || !preg_match('/^([А-ЯЁ][а-яё]+)\s+([А-ЯЁ][а-яё]+)\s+([А-ЯЁ][а-яё]+)$
+/', $fio)) {
     $errors = TRUE;
     print (" mistake in fio");
 }
