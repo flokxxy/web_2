@@ -13,8 +13,6 @@ $birthdate = $_POST['birthdate'];
 $gender = $_POST['gender'];
 $bio = $_POST['bio'];
 $langs = isset($_POST['programming-language']) ? (array)$_POST['programming-language'] : [];
-
-$langs = $_POST['programming-language'];
 $langs_check = ['c', 'c++', 'js', 'java', 'clojure', 'pascal', 'python', 'haskel', 'scala', 'php', 'prolog'];
 
 
