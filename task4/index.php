@@ -78,10 +78,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     exit();
 }
 else{
-    /*
+    
     $fio = $phone = $email = $birthdate = $gender = '';
     $langs = [];
-    */
+    
 
     $fio = $_POST['fio'];
     $phone = $_POST['phone'];
