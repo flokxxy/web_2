@@ -78,9 +78,8 @@ if (!empty($messages)) {
         </div>
         <div class="form-group">
             <label for="bio">Биография:</label>
-            <textarea class="form-control" id="bio" name="bio" rows="4" required>
-            <?php if ($errors['bio']) {print 'class="error"';} ?> value="<?php print $values['bio']; ?>"
-                </textarea>
+            <textarea id="bio" name="bio" rows="4" required <?php if ($errors['bio']) {print 'class="error"';} ?>
+            ><?php print $values['bio']; ?></textarea>
         </div>
         <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="contract" name="contract" required
