@@ -140,7 +140,7 @@ else{
         print (" mistake in check ");
     }*/
 
-    if(empty($_POST['contract'])){
+    if(!isset($_POST['contract'])){
         $errors = TRUE;
         setcookie('contract_error', '1', time() + 24 * 60 * 60);
         print (" mistake in галочка ");
