@@ -3,6 +3,11 @@ body {
     background-color: #f0f2f5;
     padding-top: 40px;
 }
+
+.error {
+    border: 2px solid red;
+}
+
 .form-structor {
     background-color: #ffffff;
     padding: 20px;
