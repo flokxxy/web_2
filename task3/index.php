@@ -1,8 +1,9 @@
 <?php
+include('../impotent.php');
 $servername = "localhost";
-$username = "u67289";
-$password = "3411094";
-$dbname = "u67289";
+$username = username;
+$password = password;
+$dbname = username;
 
 
 $fio = $phone = $email = $birthdate = $gender = '';
