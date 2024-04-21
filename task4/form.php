@@ -63,17 +63,17 @@ if (!empty($messages)) {
         <div class="form-group">
             <label for="programming-language">Любимый язык программирования:</label>
             <select class="form-control" id="programming-language" name="programming-language" multiple>
-                <option value="Pascal" <?php if (in_array('Pascal', $values['selections'])) { print 'selected'; } ?>>Pascal</option>
-                <option value="C" <?php if (in_array('C', $values['selections'])) { print 'selected'; } ?>>C</option>
-                <option value="C++" <?php if (in_array('C++', $values['selections'])) { print 'selected'; } ?>>C++</option>
-                <option value="JavaScript" <?php if (in_array('JavaScript', $values['selections'])) { print 'selected'; } ?>>JavaScript</option>
-                <option value="PHthon" <?php if (in_array('PHthon', $values['selections'])) { print 'selected'; } ?>>Python</option>
-                <option value="JavP" <?php if (in_array('JavP', $values['selections'])) { print 'selected'; } ?>>PHP</option>
-                <option value="Pya" <?php if (in_array('Pya', $values['selections'])) { print 'selected'; } ?>>Java</option>
-                <option value="Haskel" <?php if (in_array('Haskel', $values['selections'])) { print 'selected'; } ?>>Haskel</option>
-                <option value="Clrolog" <?php if (in_array('Clrolog', $values['selections'])) { print 'selected'; } ?>>Prolog</option>
-                <option value="Sojure" <?php if (in_array('Sojure', $values['selections'])) { print 'selected'; } ?>>Clojure</option>
-                <option value="Pcala" <?php if (in_array('Pcala', $values['selections'])) { print 'selected'; } ?>>Scala</option>
+                <option value="Pascal" <?php if (in_array('Pascal', $values['programming-language'])) { print 'selected'; } ?>>Pascal</option>
+                <option value="C" <?php if (in_array('C', $values['programming-language'])) { print 'selected'; } ?>>C</option>
+                <option value="C++" <?php if (in_array('C++', $values['programming-language'])) { print 'selected'; } ?>>C++</option>
+                <option value="JavaScript" <?php if (in_array('JavaScript', $values['programming-language'])) { print 'selected'; } ?>>JavaScript</option>
+                <option value="PHthon" <?php if (in_array('PHthon', $values['programming-language'])) { print 'selected'; } ?>>Python</option>
+                <option value="JavP" <?php if (in_array('JavP', $values['programming-language'])) { print 'selected'; } ?>>PHP</option>
+                <option value="Pya" <?php if (in_array('Pya', $values['programming-language'])) { print 'selected'; } ?>>Java</option>
+                <option value="Haskel" <?php if (in_array('Haskel', $values['programming-language'])) { print 'selected'; } ?>>Haskel</option>
+                <option value="Clrolog" <?php if (in_array('Clrolog', $values['programming-language'])) { print 'selected'; } ?>>Prolog</option>
+                <option value="Sojure" <?php if (in_array('Sojure', $values['programming-language'])) { print 'selected'; } ?>>Clojure</option>
+                <option value="Pcala" <?php if (in_array('Pcala', $values['programming-language'])) { print 'selected'; } ?>>Scala</option>
             </select>
         </div>
         <div class="form-group">
