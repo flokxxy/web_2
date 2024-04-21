@@ -100,18 +100,21 @@ else{
     if (empty($_POST['fio']) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fio'])) {
         $errors = TRUE;
        setcookie('fio_error', '1', time() + 24 * 60 * 60);
+        print (" mistake in фио ");
     }
     else setcookie('fio_value', $_POST['fio'], time() + 30 * 24 * 60 * 60);
 
     if (empty($_POST['phone']) || !preg_match('/^[0-9+]+$/', $_POST['phone'])) {
         $errors = TRUE;
         setcookie('phone_error', '1', time() + 24 * 60 * 60);
+        print (" mistake in тел ");
     }
     else setcookie('phone_value', $_POST['phone'], time() + 30 * 24 * 60 * 60);
 
     if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
         $errors = TRUE;
         setcookie('email_error', '1', time() + 24 * 60 * 60);
+        print (" mistake in мыло ");
     }
     else setcookie('email_value', $_POST['email'], time() + 30 * 24 * 60 * 60);
 
@@ -120,12 +123,14 @@ else{
     if ($dateObject === false || $dateObject->format('Y-m-d') !== $_POST['birthdate']) {
         $errors = TRUE;
         setcookie('birthdate_error', '1', time() + 24 * 60 * 60);
+        print (" mistake in дата ");
     }
     else setcookie('birthdate_value', $_POST['birthdate'], time() + 30 * 24 * 60 * 60);
 
     if ($_POST['gender'] != 'male' && $_POST['gender'] != 'female') {
         $errors = TRUE;
         setcookie('gender_error', '1', time() + 24 * 60 * 60);
+        print (" mistake in гендр ");
     }
     else setcookie('gender_value', $_POST['gender'], time() + 30 * 24 * 60 * 60);
 
@@ -138,6 +143,7 @@ else{
     if(empty($_POST['contract'])){
         $errors = TRUE;
         setcookie('contract_error', '1', time() + 24 * 60 * 60);
+        print (" mistake in галочка ");
     }
     else setcookie('contract_value', $_POST['contract'], time() + 30 * 24 * 60 * 60);
 
