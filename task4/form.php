@@ -1,5 +1,15 @@
 <?php
-
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $fio = $_POST['fio'];
+    $phone = $_POST['phone'];
+    $email = $_POST['email'];
+    $birthdate = $_POST['birthdate'];
+    $gender = $_POST['gender'];
+    $programmingLanguages = $_POST['programming-language'];
+    $bio = $_POST['bio'];
+    // Дополнительная обработка данных формы
+    // Например, сохранение в базу данных или отправка по электронной почте
+}
 ?>
 
 <!DOCTYPE html>
