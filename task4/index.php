@@ -8,9 +8,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $messages = array();
 
     if (!empty($_COOKIE['save'])) {
-        setcookie('save', '', 100000); // Удаляем куку, указывая время устаревания в прошлом.
-        $messages[] = 'Спасибо, результаты сохранены.'; // Если есть параметр save, то выводим сообщение пользователю.
+        setcookie('save', '', 100000);
+        $messages[] = 'Спасибо, результаты сохранены.';
     }
+
     $errors = array();
     $errors['fio'] = !empty($_COOKIE['fio_error']);
     $errors['phone'] = !empty($_COOKIE['phone_error']);
@@ -22,48 +23,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $errors['contract'] = !empty($_COOKIE['contract_error']);
 
     if ($errors['fio']) {
-        setcookie('fio_error', '', 100000); // Удаляем куку, указывая время устаревания в прошлом.
+        setcookie('fio_error', '', 100000);
         setcookie('fio_value', '', 100000);
         $messages[] = '<div class="error">Заполните имя.</div>';
     }
     if ($errors['phone']) {
-        setcookie('phone_error', '', 100000); // Удаляем куку, указывая время устаревания в прошлом.
+        setcookie('phone_error', '', 100000);
         setcookie('phone_value', '', 100000);
         $messages[] = '<div class="error">Заполните телефон.</div>';
     }
     if ($errors['email']) {
-        setcookie('email_error', '', 100000); // Удаляем куку, указывая время устаревания в прошлом.
+        setcookie('email_error', '', 100000);
         setcookie('email_value', '', 100000);
         $messages[] = '<div class="error">Заполните почту.</div>';
     }
     if ($errors['birthdate']) {
-        setcookie('birthdate_error', '', 100000); // Удаляем куку, указывая время устаревания в прошлом.
+        setcookie('birthdate_error', '', 100000);
         setcookie('birthdate_value', '', 100000);
         $messages[] = '<div class="error">Заполните дату.</div>';
     }
     if ($errors['gender']) {
-        setcookie('gender_error', '', 100000); // Удаляем куку, указывая время устаревания в прошлом.
+        setcookie('gender_error', '', 100000);
         setcookie('gender_value', '', 100000);
         $messages[] = '<div class="error">Заполните пол.</div>';
     }
     if ($errors['programming-language']) {
-        setcookie('programming-language_error', '', 100000); // Удаляем куку, указывая время устаревания в прошлом.
+        setcookie('programming-language_error', '', 100000);
         setcookie('programming-language_value', '', 100000);
         $messages[] = '<div class="error">выберите язык.</div>';
     }
     if ($errors['bio']) {
-        setcookie('bio_error', '', 100000); // Удаляем куку, указывая время устаревания в прошлом.
+        setcookie('bio_error', '', 100000);
         setcookie('bio_value', '', 100000);
         $messages[] = '<div class="error">Заполните дополнительную информаци о себе.</div>';
     }
     if ($errors['contract']) {
-        setcookie('contract_error', '', 100000); // Удаляем куку, указывая время устаревания в прошлом.
+        setcookie('contract_error', '', 100000);
         setcookie('contract_value', '', 100000);
         $messages[] = '<div class="error">Согласитель на обработку персональных данных.</div>';
     }
 
 
-    $values = array(); // Складываем предыдущие значения полей в массив, если есть.
+    $values = array();
     $values['fio'] = empty($_COOKIE['fio_value']) ? '' : $_COOKIE['fio_value'];
     $values['phone'] = empty($_COOKIE['phone_value']) ? '' : $_COOKIE['phone_value'];
     $values['email'] = empty($_COOKIE['email_value']) ? '' : $_COOKIE['email_value'];
@@ -77,83 +78,56 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     exit();
 }
 else{
-    include('../impotent.php');
-
-
-    $servername = "localhost";
-    $username = username;
-    $password = password;
-    $dbname = username;
-
-
-    if(!isset($_SESSION['ERROR'])){
-        $_SESSION['ERROR'] = array();
-    }
-
+    /*
     $fio = $phone = $email = $birthdate = $gender = '';
     $langs = [];
+    */
 
-
-
-    $fio = isset($_POST['fio'])?trim($_POST['fio']):'';
-    $phone = isset($_POST['phone'])?trim($_POST['phone']):'';
-    $email = isset($_POST['email'])?trim($_POST['email']):'';
-    $birthdate = isset($_POST['birthdate'])?trim($_POST['birthdate']):'';
-    $gender = isset($_POST['gender'])?trim($_POST['gender']):'';
-    $bio = isset($_POST['bio'])?trim($_POST['bio']):'';
+    $fio = $_POST['fio'];
+    $phone = $_POST['phone'];
+    $email = $_POST['email'];
+    $birthdate = $_POST['birthdate'];
+    $gender = $_POST['gender'];
+    $bio = $_POST['bio'];
     $langs = isset($_POST['programming-language']) ? (array)$_POST['programming-language'] : [];
     $langs_check = ['c', 'c++', 'js', 'java', 'clojure', 'pascal', 'python', 'haskel', 'scala', 'php', 'prolog'];
 
 
-    function checkLangs($langs, $langs_check) {
-        for ($i = 0; $i < count($langs); $i++) {
-            $isTrue = FALSE;
-            for ($j = 0; $j < count($langs_check); $j++) {
-                if ($langs[$i] === $langs_check[$j]) {
-                    $isTrue = TRUE;
-                    break;
-                }
-            }
-            if ($isTrue === FALSE) return FALSE;
-        }
-        return TRUE;
-    }
-
 //валидация данных
-    if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-        echo 'This script only works with POST queries';
-        exit();
-    }
 
     $errors = FALSE;
 
     if (empty($_POST['fio']) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fio'])) {
         $errors = TRUE;
-        print (" mistake in fio ");
+       setcookie('fio_error', '1', time() + 24 * 60 * 60);
     }
+    else setcookie('fio_value', $_POST['fio'], time() + 30 * 24 * 60 * 60);
 
-    if (empty($phone) || !preg_match('/^[0-9+]+$/', $phone)) {
+    if (empty($_POST['phone']) || !preg_match('/^[0-9+]+$/', $_POST['phone'])) {
         $errors = TRUE;
-        print (" mistake in phone ");
+        setcookie('phone_error', '1', time() + 24 * 60 * 60);
     }
+    else setcookie('phone_value', $_POST['phone'], time() + 30 * 24 * 60 * 60);
 
-    if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
         $errors = TRUE;
-        print (" mistake in mail ");
+        setcookie('email_error', '1', time() + 24 * 60 * 60);
     }
+    else setcookie('email_value', $_POST['email'], time() + 30 * 24 * 60 * 60);
 
 
-    $dateObject = DateTime::createFromFormat('Y-m-d', $birthdate);
-    if ($dateObject === false || $dateObject->format('Y-m-d') !== $birthdate) {
+    $dateObject = DateTime::createFromFormat('Y-m-d', $_POST['birthdate']);
+    if ($dateObject === false || $dateObject->format('Y-m-d') !== $_POST['birthdate']) {
         $errors = TRUE;
-        print (" mistake in date ");
-        //добавить проверку на 0
+        setcookie('birthdate_error', '1', time() + 24 * 60 * 60);
     }
+    else setcookie('birthdate_value', $_POST['birthdate'], time() + 30 * 24 * 60 * 60);
 
-    if ($gender != 'male' && $gender != 'female') {
+    if ($_POST['gender'] != 'male' && $_POST['gender'] != 'female') {
         $errors = TRUE;
-        print (" mistake in male ");
+        setcookie('gender_error', '1', time() + 24 * 60 * 60);
     }
+    else setcookie('gender_value', $_POST['gender'], time() + 30 * 24 * 60 * 60);
 
     /*
     if (!checkLangs($langs, $langs_check)) {
@@ -163,27 +137,30 @@ else{
 
     if(empty($_POST['contract'])){
         $errors = TRUE;
-        print (" mistake in check ");
+        setcookie('contract_error', '1', time() + 24 * 60 * 60);
     }
+    else setcookie('contract_value', $_POST['contract'], time() + 30 * 24 * 60 * 60);
 
     if ($errors === TRUE) {
         echo 'mistake';
         exit();
     }
-
-
-    if(!empty($_COOKIE['fio'])){
-        $fio=$_COOKIE['fio'];
-        $phone=$_COOKIE['phone'];
-        $email=$_COOKIE['email'];
+    else {
+        setcookie('fio_error', '', time() - 30 * 24 * 60 * 60);
+        setcookie('phone_value', '', time() - 30 * 24 * 60 * 60);
+        setcookie('email_value', '', time() - 30 * 24 * 60 * 60);
+        setcookie('birthdate_value', '', time() - 30 * 24 * 60 * 60);
+        setcookie('gender_value', '', time() - 30 * 24 * 60 * 60);
+        setcookie('contract_value', '', time() - 30 * 24 * 60 * 60);
     }
 
-    if(!empty($_SESSION['error'] )){
-        foreach ($_SESSION['error'] as $error) {
-            echo "<p>".$error."</p>";
-        }
-        $_SESSION['error'] = array();
-    }
+
+    include('../impotent.php');
+    $servername = "localhost";
+    $username = username;
+    $password = password;
+    $dbname = username;
+
     try {
         $conn = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
