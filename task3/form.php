@@ -1,3 +1,16 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $fio = $_POST['fio'];
+    $phone = $_POST['phone'];
+    $email = $_POST['email'];
+    $birthdate = $_POST['birthdate'];
+    $gender = $_POST['gender'];
+    $programmingLanguages = $_POST['programming-language'];
+    $bio = $_POST['bio'];
+    // Дополнительная обработка данных формы
+    // Например, сохранение в базу данных или отправка по электронной почте
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,11 +20,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <meta charset="UTF-8">
     <title>task 3</title>
-
-
-
-
 </head>
+
+
 <body>
 <div class="form-structor">
     <h2 class="form-title">Форма</h2>
