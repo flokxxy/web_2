@@ -51,12 +51,12 @@ if (!empty($messages)) {
             <label>Пол:</label>
             <div>
                 <input type="radio" id="male" name="gender" value="male" required
-                    <?php if ($value['gender']==='male') {print 'checked';} ?>"
+                    <?php if ($values['gender']==='male') {print 'checked';} ?>"
                 <label for="male">Мужской</label>
             </div>
             <div>
                 <input type="radio" id="female" name="gender" value="female"
-                <?php if ($value['gender']==='female') {print 'checked';} ?>"
+                <?php if ($values['gender']==='female') {print 'checked';} ?>"
                 <label for="female">Женский</label>
             </div>
         </div>
