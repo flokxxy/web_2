@@ -78,10 +78,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     exit();
 }
 else{
-    
+
     $fio = $phone = $email = $birthdate = $gender = '';
     $langs = [];
-    
+
 
     $fio = $_POST['fio'];
     $phone = $_POST['phone'];
@@ -99,7 +99,7 @@ else{
 
     if (empty($_POST['fio']) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fio'])) {
         $errors = TRUE;
-       setcookie('fio_error', '1', time() + 24 * 60 * 60);
+        setcookie('fio_error', '1', time() + 24 * 60 * 60);
         print (" mistake in фио ");
     }
     else setcookie('fio_value', $_POST['fio'], time() + 30 * 24 * 60 * 60);
@@ -183,10 +183,15 @@ VALUES ('$fio', '$phone', '$email', '$birthdate', '$gender', '$bio')";
             $stmt->bindParam(':langName', $langs[$i]);
             $stmt->execute();
             $result = $stmt->fetch();
-            $lang_id = $result['id_lang'];
-            $sql = "INSERT INTO feedback (id, id_lang) VALUES ($lastId, $lang_id)";
-            $stmt = $conn->prepare($sql);
-            $stmt->execute();
+
+            if ($result) {
+                $lang_id = $result['id_lang'];
+                $sql = "INSERT INTO feedback (id, id_lang) VALUES ($lastId, $lang_id)";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+            } else {
+                echo "Язык программирования не найден для: " . $langs[$i] . "\n";
+            }
         }
         echo nl2br("\nNew record created successfully");
     } catch(PDOException $e) {
