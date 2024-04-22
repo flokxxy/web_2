@@ -171,10 +171,19 @@ else{
         $conn = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         echo "Connected successfully ";
-        $sql = "INSERT INTO request (fio, phone, email, birthdate, gender, bio)
-VALUES ('$fio', '$phone', '$email', '$birthdate', '$gender', '$bio')";
+
+        // Используем подготовленное выражение для вставки данных пользователя
+        $sql = "INSERT INTO request (fio, phone, email, birthdate, gender, bio) VALUES (:fio, :phone, :email, :birthdate, :gender, :bio)";
         $stmt = $conn->prepare($sql);
-        $stmt->execute();
+        $stmt->execute([
+            ':fio' => $fio,
+            ':phone' => $phone,
+            ':email' => $email,
+            ':birthdate' => $birthdate,
+            ':gender' => $gender,
+            ':bio' => $bio
+        ]);
+
         $lastId = $conn->lastInsertId();
 
         for ($i = 0; $i < count($langs); $i++) {
@@ -193,10 +202,9 @@ VALUES ('$fio', '$phone', '$email', '$birthdate', '$gender', '$bio')";
                 echo "Язык программирования не найден для: " . $langs[$i] . "\n";
             }
         }
-        echo nl2br("\nNew record created successfully");
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();
-    }
+        }
     $conn = null;
 }
 ?>
