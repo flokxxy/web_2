@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
     $started_session = session_start();
-    $messages = '1:'.!empty($_COOKIE[session_name()]) .'<br> :: '. $started_session .'<br> :: '. !empty($_SESSION['login']).'<br> ';
+    $messages[] = '1:'.!empty($_COOKIE[session_name()]) .'<br> :: '. $started_session .'<br> :: '. !empty($_SESSION['login']).'<br> ';
 
     if (!empty($_COOKIE[session_name()]) &&
         $started_session && !empty($_SESSION['login'])) {
