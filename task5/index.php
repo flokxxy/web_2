@@ -86,11 +86,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $values['contract'] = empty($_COOKIE['contract_value']) ? '' : $_COOKIE['contract_value'];
 
 
-    
-    $messages = '1:'.!empty($_COOKIE[session_name()]) .'<br> :: '. session_start() .'<br> :: '. !empty($_SESSION['login']);
-    
+    $started_session = session_start();
+    $messages = '1:'.!empty($_COOKIE[session_name()]) .'<br> :: '. $started_session .'<br> :: '. !empty($_SESSION['login']).'<br> ';
+
     if (!empty($_COOKIE[session_name()]) &&
-        session_start() && !empty($_SESSION['login'])) {
+        $started_session && !empty($_SESSION['login'])) {
         $messages[]='Вход с логином: '. $_SESSION['login'];
         // TODO: загрузить данные пользователя из БД
         // и заполнить переменную $values,
