@@ -210,7 +210,7 @@ else {
 
 
     if (!empty($_COOKIE[session_name()]) &&
-        session_start() && !empty($_SESSION['login'])) {
+        session_start() && !empty($_SESSION['login']) && false) {
         // TODO: перезаписать данные в БД новыми данными,
         // кроме логина и пароля.
     }
