@@ -194,6 +194,8 @@ else {
         return 'user_' . uniqid(); // генерация уникального ID для простоты
     }
 
+
+    /*
 // Функция для генерации безопасного пароля
     function generatePassword($length = 12)
     {
@@ -202,8 +204,9 @@ else {
         for ($i = 0; $i < $length; $i++) {
             $password .= $chars[random_int(0, strlen($chars) - 1)];
         }
-    }
-
+    }*/
+    
+   
 
 
         include('../impotent.php');
@@ -222,9 +225,9 @@ else {
         // Генерируем уникальный логин и пароль.
         // TODO: сделать механизм генерации, например функциями rand(), uniquid(), md5(), substr().
         $login = generateUsername();
-       // $pass = generatePassword();
+        //$pass = generatePassword();
         
-$pass = '123';
+        $pass = rand();
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Сохраняем в Cookies.
