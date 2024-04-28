@@ -34,12 +34,12 @@ if (!empty($messages)) {
             <label>
             <strong> ФИО: </strong>
             <br>
-            <input type="text" class="form-control" id="fio" name="fio" required value="<?php echo htmlspecialchars($values['fio'] ?? ''); ?>">
+            <input type="text" class="form-control" id="fio" name="fio"  value="<?php echo htmlspecialchars($values['fio'] ?? ''); ?>">
         </label>
         
         <div class="form-group">
             <label for="phone">Телефон:</label>
-            <input type="tel" class="form-control" id="phone" name="phone" required value="<?php echo htmlspecialchars($values['phone'] ?? ''); ?>">
+            <input type="tel" class="form-control" id="phone" name="phone"  value="<?php echo htmlspecialchars($values['phone'] ?? ''); ?>">
         </div>
         <div class="form-group">
             <label for="email">E-mail:</label>
