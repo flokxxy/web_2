@@ -86,6 +86,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $values['contract'] = empty($_COOKIE['contract_value']) ? '' : $_COOKIE['contract_value'];
 
 
+    
+    $messages = '1:'.!empty($_COOKIE[session_name()]) .'<br> :: '. session_start() .'<br> :: '. !empty($_SESSION['login']);
+    
     if (!empty($_COOKIE[session_name()]) &&
         session_start() && !empty($_SESSION['login'])) {
         $messages[]='Вход с логином: '. $_SESSION['login'];
@@ -93,6 +96,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         // и заполнить переменную $values,
         // предварительно санитизовав.
         printf('Вход с логином %s, uid %d', $_SESSION['login'], $_SESSION['uid']);
+    }
+    else{
+        $messages[]='невыолнен вход';
     }
 
     $messages[] = '<a href ="login.php?enter=1"> Enter (выход) </a>';
