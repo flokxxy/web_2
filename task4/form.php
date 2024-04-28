@@ -30,11 +30,11 @@ if (!empty($messages)) {
 <div class="form-structor">
     <h2 class="form-title">Форма</h2>
     <form action="index.php" method="POST" class="form_main">
-        <div class="form-group">
-            <label for="fio">ФИО:</label>
+        <lable class="form-group">
+            <strong for="fio">ФИО:</strong>
             <input type="text" id="fio" name="fio" required
                 <?php if ($errors['fio']) {print 'class="error"';} ?> value="<?php print $values['fio']; ?>" placeholder="ФИО" />
-        </div>
+        </lable>
         <div class="form-group">
             <label for="phone">Телефон:</label>
             <input type="tel" id="phone" name="phone" required
