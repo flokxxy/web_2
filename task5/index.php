@@ -22,6 +22,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         }
     }
 
+    
+//проверка
+    if (isset($_COOKIE['save'])) {
+    echo "Cookie 'save' is set!<br>";
+    echo "Value is: " . $_COOKIE['save'];
+} else {
+    echo "Cookie 'save' is not set!";
+}
+
     $errors = array();
     $errors['fio'] = !empty($_COOKIE['fio_error']);
     $errors['phone'] = !empty($_COOKIE['phone_error']);
