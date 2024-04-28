@@ -122,7 +122,7 @@ else
 
     $loggined=false;
     $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    setcookie('logMASS',$_POST['username'].' '.$_POST['password'] .'<br>');
+    
     try {
         $pdo = new PDO($dsn, $username, $password, $options);
         $pr = "SELECT * FROM users";
@@ -139,7 +139,7 @@ else
     } catch (\PDOException $e) {
         setcookie('DBERROR', 'Error : ' . $e->getMessage());
     }
-
+    setcookie('logMASS',$_POST['username'].' '.$_POST['password'] . ' ' . $loggined .'<br>');
     if($loggined){
         $_SESSION['login'] = $_POST['username'];
         $_SESSION['password'] = $_POST['password'];
