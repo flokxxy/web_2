@@ -43,10 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         body {
             background-color: #f8f9fa;
         }
-        .form-container1 {
+        .form-container {
             margin-top: 100px;
         }
-        .form-signin1 {
+        .form-signin {
             width: 100%;
             max-width: 400px;
             padding: 15px;
@@ -55,20 +55,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-        .form-signin1 .form-floating1:focus-within {
+        .form-signin .form-floating:focus-within {
             z-index: 2;
         }
-        .form-signin1 input[type="text"],
-        .form-signin1 input[type="password"] {
+        .form-signin input[type="text"],
+        .form-signin input[type="password"] {
             margin-bottom: 10px;
             border-radius: 8px;
         }
-        .btn-custom1 {
+        .btn-custom {
             color: #fff;
             background-color: #152573;
             border-color: #152573;
         }
-        .btn-custom1:hover {
+        .btn-custom:hover {
             color: #fff;
             background-color: #152573;
             border-color: #152573;
@@ -76,12 +76,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     </style>
 </head>
 <body>
-<div class="container form-container1">
+<div class="container form-container">
     <div class="row justify-content-center">
         <div class="col-md-6 col-lg-4">
-            <form class="form-signin1" action="login.php" method="post">
+            <form class="form-signin" action="login.php" method="post">
                 <h2 class="h3 mb-3 font-weight-normal text-center">Please sign in</h2>
-                <div class="form-floating1 mb-3">
+                <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="username" name="username" placeholder="Username" >
                     <label for="username">Username</label>
                 </div>
@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         <input type="checkbox" value="remember-me"> Remember me
                     </label>
                 </div>
-                <button class="w-100 btn btn-lg btn-custom1" type="submit">Sign in</button>
+                <button class="w-100 btn btn-lg btn-custom" type="submit">Sign in</button>
             </form>
         </div>
     </div>
