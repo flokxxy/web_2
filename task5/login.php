@@ -1,66 +1,37 @@
 
 <?php
+
+$session_started = false;
+if ($_COOKIE[session_name()] && session_start()) {
+    $session_started = true;
+    if(!empty($_GET['enter'])){
+        session_destroy();
+        header("Location:index.php");
+        exit();
+    }
+    if (!empty($_SESSION['login'])) {
+        header('Location: ./');
+        exit();
+    }
+}
 // Включение отображения ошибок для отладки
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Подключение к базе данных с использованием PDO
-include('../impotent.php');
-$servername = "localhost";
-$username = username;
-$password = password;
-$dbname = username;
 
-$dsn = "mysql:host=$servername;dbname=$dbname; charset=utf8mb4";
-$options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
-];
-
-try {
-    $pdo = new PDO($dsn, $username, $password, $options);
-} catch (\PDOException $e) {
-    throw new \PDOException($e->getMessage(), (int)$e->getCode());
-}
-
-
-// Функция для генерации уникального логина
-function generateUsername() {
-    return 'user_' . uniqid(); // генерация уникального ID для простоты
-}
-
-// Функция для генерации безопасного пароля
-function generatePassword($length = 12) {
-    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?';
-    $password = '';
-    for ($i = 0; $i < $length; $i++) {
-        $password .= $chars[random_int(0, strlen($chars) - 1)];
-    }
-    return $password;
-}
-
-// Генерация логина и пароля
-$username = generateUsername();
-$password = generatePassword();
-
-// Хеширование пароля
-$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-// Вставка данных в базу
-$sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
-$stmt = $pdo->prepare($sql);
-$stmt->execute(['username' => $username, 'password' => $hashed_password]);
 
 
 echo "Логин:" . $_GET['log'];
 echo "Пароль:" . $_GET['pas'];
-echo "Пароль hash: $hashed_password ";
 echo "Новый пользователь успешно добавлен.";
+
+//$hashed_password = password_hash($_GET['pas'], PASSWORD_DEFAULT);
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,11 +82,11 @@ echo "Новый пользователь успешно добавлен.";
             <form class="form-signin" action="login.php" method="post">
                 <h2 class="h3 mb-3 font-weight-normal text-center">Please sign in</h2>
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" >
                     <label for="username">Username</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" >
                     <label for="password">Password</label>
                 </div>
                 <div class="checkbox mb-3 mt-3">
@@ -132,4 +103,57 @@ echo "Новый пользователь успешно добавлен.";
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<?php
+}
+else
+{
+    include('../impotent.php');
+    $servername = "localhost";
+    $username = username;
+    $password = password;
+    $dbname = username;
 
+    $dsn = "mysql:host=$servername;dbname=$dbname; charset=utf8mb4";
+    $options = [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES   => false,
+    ];
+
+    $loggined=false;
+    $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    try {
+        $pdo = new PDO($dsn, $username, $password, $options);
+        $pr = "SELECT * FROM users";
+        $issue = $pdo->query($pr);
+        if (!$session_started) {
+            session_start();
+        }
+        while ($row = $issue->fetch()) {
+            if($_POST['username'] == $row['username'] && $hashed_password == $row['password']) {
+                $loggined = true;
+                break;
+            }
+        }
+    } catch (\PDOException $e) {
+        throw new \PDOException($e->getMessage(), (int)$e->getCode());
+    }
+
+    if($loggined){
+        $_SESSION['login'] = $_POST['username'];
+        $_SESSION['password'] = $_POST['password'];
+    }
+    else{
+        $_SESSION['login'] = '';
+        $_SESSION['password'] = '';
+    }
+
+    
+
+
+
+
+header('Location: ./');
+}
+?>
