@@ -5,13 +5,13 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Подключение к базе данных с использованием PDO
- include('../impotent.php');
-    $servername = "localhost";
-    $username = username;
-    $password = password;
-    $dbname = username;
+include('../impotent.php');
+$servername = "localhost";
+$username = username;
+$password = password;
+$dbname = username;
 
-$dsn = "mysql:host=localhost;dbname=$dbname,$username, $password";
+$dsn = "mysql:host=$servername;dbname=$dbname; charset=utf8mb4";
 $options = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
