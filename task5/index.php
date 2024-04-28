@@ -8,9 +8,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $messages = array();
 
     if (!empty($_COOKIE['save'])) {
-        
+
         $messages[] = 'Спасибо, результаты сохранены.';
-        
+
 
         if (!empty($_COOKIE['pass'])) {
             $messages[] = sprintf('Вы можете <a href="login.php?log=%s&pas=%s"> войти </a> с логином <strong>%s</strong>
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         setcookie('login', '', 100000);
         setcookie('pass', '', 100000);
     }
-        
+
 
     $errors = array();
     $errors['fio'] = !empty($_COOKIE['fio_error']);
@@ -98,6 +98,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         printf('Вход с логином %s, uid %d', $_SESSION['login'], $_SESSION['uid']);
     }
 
+    $messages[] = '<a href ="login.php?enter=1> Enter (выход) </a>';
+
+
 
     include('form.php');
     exit();
@@ -124,7 +127,7 @@ else {
 
     if (empty($_POST['fio']) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fio'])) {
         $errors = TRUE;
-       setcookie('fio_error', '1', time() + 24 * 60 * 60);
+        setcookie('fio_error', '1', time() + 24 * 60 * 60);
         print (" mistake in фио ");
     }
     else setcookie('fio_value', $_POST['fio'], time() + 30 * 24 * 60 * 60);
@@ -202,11 +205,11 @@ else {
             $password .= $chars[random_int(0, strlen($chars) - 1)];
         }
     }*/
-    
-   
 
 
-        include('../impotent.php');
+
+
+    include('../impotent.php');
     $servername = "localhost";
     $username = username;
     $password = password;
@@ -223,9 +226,9 @@ else {
         // TODO: сделать механизм генерации, например функциями rand(), uniquid(), md5(), substr().
         $login = generateUsername();
         //$pass = generatePassword();
-        
+
         $pass = rand();
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $hashed_password = password_hash($pass, PASSWORD_DEFAULT);
 
         // Сохраняем в Cookies.
         setcookie('login', $login);
@@ -240,12 +243,12 @@ else {
             // Вставка данных в базу
             $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
             $stmt = $conn->prepare($sql);
-            $stmt->execute(['username' => $username, 'password' => $hashed_password]);
+            $stmt->execute(['username' => $login, 'password' => $hashed_password]);
 
 
 
-            $sql = "INSERT INTO request_users (fio, phone, email, birthdate, gender, bio)
-VALUES ('$fio', '$phone', '$email', '$birthdate', '$gender', '$bio')";
+            $sql = "INSERT INTO request_users (username, fio, phone, email, birthdate, gender, bio)
+VALUES ('$login','$fio', '$phone', '$email', '$birthdate', '$gender', '$bio')";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $lastId = $conn->lastInsertId();
