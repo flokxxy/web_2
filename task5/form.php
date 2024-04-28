@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <meta charset="UTF-8">
-    <title>task 5</title>
+    <title>task 3</title>
 </head>
 
 
@@ -29,7 +29,7 @@ if (!empty($messages)) {
     <form action="index.php" method="POST" class="form_main">
         <div class="form-group">
             <label for="fio">ФИО:</label>
-            <input type="text" id="fio" name="fio"
+            <input type="text" id="fio" name="fio" 
                 <?php if ($errors['fio']) {print 'class="error"';} ?> value="<?php print $values['fio']; ?>" placeholder="ФИО" />
         </div>
         <div class="form-group">
