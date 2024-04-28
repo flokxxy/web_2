@@ -143,11 +143,13 @@ else
     if($loggined){
         $_SESSION['login'] = $_POST['username'];
         $_SESSION['password'] = $_POST['password'];
+        $_SESSION['hasentered'] = true;
 
     }
     else{
         $_SESSION['login'] = '';
         $_SESSION['password'] = '';
+        $_SESSION['hasentered'] = false;
     }
 
 
