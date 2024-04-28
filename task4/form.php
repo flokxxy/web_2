@@ -30,36 +30,30 @@ if (!empty($messages)) {
 <div class="form-structor">
     <h2 class="form-title">Форма</h2>
     <form action="index.php" method="POST" class="form_main">
-        <lable class="form-group">
-            <strong for="fio">ФИО:</strong>
-            <input type="text" id="fio" name="fio" required
-                <?php if ($errors['fio']) {print 'class="error"';} ?> value="<?php print $values['fio']; ?>" placeholder="ФИО" />
-        </lable>
+        <div class="form-group">
+            <label for="fio">ФИО:</label>
+            <input type="text" class="form-control" id="fio" name="fio" required value="<?php echo htmlspecialchars($values['fio'] ?? ''); ?>">
+        </div>
         <div class="form-group">
             <label for="phone">Телефон:</label>
-            <input type="tel" id="phone" name="phone" required
-                <?php if ($errors['phone']) {print 'class="error"';} ?> value="<?php print $values['phone']; ?>" placeholder="+7(___)___-__-__" />
+            <input type="tel" class="form-control" id="phone" name="phone" required value="<?php echo htmlspecialchars($values['phone'] ?? ''); ?>">
         </div>
         <div class="form-group">
             <label for="email">E-mail:</label>
-            <input type="email" class="form-control" id="email" name="email" required
-                <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>" placeholder="email" />
+            <input type="email" class="form-control" id="email" name="email" required value="<?php echo htmlspecialchars($values['email'] ?? ''); ?>">
         </div>
         <div class="form-group">
             <label for="birthdate">Дата рождения:</label>
-            <input type="date" class="form-control" id="birthdate" name="birthdate" required
-                <?php if ($errors['birthdate']) {print 'class="error"';} ?> value="<?php print $values['birthdate']; ?>" />
+            <input type="date" class="form-control" id="birthdate" name="birthdate" required value="<?php echo htmlspecialchars($values['birthdate'] ?? ''); ?>">
         </div>
         <div class="form-group">
             <label>Пол:</label>
             <div>
-                <input type="radio" id="male" name="gender" value="male" required
-                    <?php if ($values['gender']==='male') {print 'checked';} ?>"
+                <input type="radio" id="male" name="gender" value="male" required <?php echo ($values['gender'] ?? '') === 'male' ? 'checked' : ''; ?>>
                 <label for="male">Мужской</label>
             </div>
             <div>
-                <input type="radio" id="female" name="gender" value="female"
-                <?php if ($values['gender']==='female') {print 'checked';} ?>"
+                <input type="radio" id="female" name="gender" value="female" <?php echo ($values['gender'] ?? '') === 'female' ? 'checked' : ''; ?>>
                 <label for="female">Женский</label>
             </div>
         </div>
