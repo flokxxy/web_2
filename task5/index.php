@@ -10,18 +10,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (!empty($_COOKIE['save'])) {
         
         $messages[] = 'Спасибо, результаты сохранены.';
-        $messages[] = !empty($_COOKIE['passward']);
+        $messages[] = !empty($_COOKIE['pass']);
          $messages[] = sprintf('Вы можете <a href="login.php">войти</a> с логином <strong>%s</strong>
         и паролем <strong>%s</strong> для изменения данных.',
                 strip_tags($_COOKIE['login']),
-                strip_tags($_COOKIE['passward']));
+                strip_tags($_COOKIE['pass']));
 
 
         if (!empty($_COOKIE['pass'])) {
             $messages[] = sprintf('Вы можете <a href="login.php">войти</a> с логином <strong>%s</strong>
         и паролем <strong>%s</strong> для изменения данных.',
                 strip_tags($_COOKIE['login']),
-                strip_tags($_COOKIE['passward']));
+                strip_tags($_COOKIE['pass']));
         }
 
         setcookie('save', '', 100000);
@@ -222,8 +222,9 @@ else {
         // Генерируем уникальный логин и пароль.
         // TODO: сделать механизм генерации, например функциями rand(), uniquid(), md5(), substr().
         $login = generateUsername();
-        $pass = generatePassword();
-
+       // $pass = generatePassword();
+        
+$pass = '123';
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Сохраняем в Cookies.
