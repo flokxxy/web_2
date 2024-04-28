@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $values['contract'] = empty($_COOKIE['contract_value']) ? '' : $_COOKIE['contract_value'];
 
 
-    if (empty($errors) && !empty($_COOKIE[session_name()]) &&
+    if ( !empty($_COOKIE[session_name()]) &&
         session_start() && !empty($_SESSION['login'])) {
         // TODO: загрузить данные пользователя из БД
         // и заполнить переменную $values,
@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         printf('Вход с логином %s, uid %d', $_SESSION['login'], $_SESSION['uid']);
     }
 
-    //$messages[] = sprintf('<a href ="login.php?enter=1> Enter (выход) </a>');
+    $messages[] = sprintf('<a href ="login.php?enter=1> Enter (выход) </a>');
 
 
 
