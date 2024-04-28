@@ -143,13 +143,14 @@ else
     if($loggined){
         $_SESSION['login'] = $_POST['username'];
         $_SESSION['password'] = $_POST['password'];
+        echo "есть";
     }
     else{
         $_SESSION['login'] = '';
         $_SESSION['password'] = '';
     }
 
-    
+
 
 
 
