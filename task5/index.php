@@ -8,10 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $messages = array();
 
     if (!empty($_COOKIE['save'])) {
-
         $messages[] = 'Спасибо, результаты сохранены.';
-
-
         if (!empty($_COOKIE['pass'])) {
             $messages[] = sprintf('Вы можете <a href="login.php?log=%s&pas=%s"> войти </a> с логином <strong>%s</strong>
         и паролем <strong>%s</strong> для изменения данных.',
@@ -20,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 strip_tags($_COOKIE['login']),
                 strip_tags($_COOKIE['pass']));
         }
-
         setcookie('save', '', 100000);
         setcookie('login', '', 100000);
         setcookie('pass', '', 100000);
@@ -90,8 +86,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $values['contract'] = empty($_COOKIE['contract_value']) ? '' : $_COOKIE['contract_value'];
 
 
-    if ( !empty($_COOKIE[session_name()]) &&
+    if (!empty($_COOKIE[session_name()]) &&
         session_start() && !empty($_SESSION['login'])) {
+        $messages[]='Вход с логином: '. $_SESSION['login'];
         // TODO: загрузить данные пользователя из БД
         // и заполнить переменную $values,
         // предварительно санитизовав.
@@ -101,15 +98,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $messages[] = '<a href ="login.php?enter=1"> Enter (выход) </a>';
 
 
+
     include('form.php');
     exit();
 }
 else {
-
+//обработка POST запроса
     $fio = $phone = $email = $birthdate = $gender = '';
     $langs = [];
-
-
     $fio = $_POST['fio'];
     $phone = $_POST['phone'];
     $email = $_POST['email'];
@@ -187,25 +183,9 @@ else {
         setcookie('contract_value', '', time() - 30 * 24 * 60 * 60);
     }
 
-
-
     function generateUsername() {
         return 'user_' . uniqid(); // генерация уникального ID для простоты
     }
-
-
-    /*
-// Функция для генерации безопасного пароля
-    function generatePassword($length = 12)
-    {
-        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?';
-        $password = '';
-        for ($i = 0; $i < $length; $i++) {
-            $password .= $chars[random_int(0, strlen($chars) - 1)];
-        }
-    }*/
-
-
 
 
     include('../impotent.php');
@@ -221,11 +201,7 @@ else {
         // кроме логина и пароля.
     }
     else {
-        // Генерируем уникальный логин и пароль.
-        // TODO: сделать механизм генерации, например функциями rand(), uniquid(), md5(), substr().
         $login = generateUsername();
-        //$pass = generatePassword();
-
         $pass = rand();
         $hashed_password = password_hash($pass, PASSWORD_DEFAULT);
 
@@ -246,8 +222,7 @@ else {
 
 
 
-            $sql = "INSERT INTO request_users (username, fio, phone, email, birthdate, gender, bio)
-VALUES ('$login','$fio', '$phone', '$email', '$birthdate', '$gender', '$bio')";
+            $sql = "INSERT INTO request_users (username, fio, phone, email, birthdate, gender, bio) VALUES ('$login','$fio', '$phone', '$email', '$birthdate', '$gender', '$bio')";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $lastId = $conn->lastInsertId();
