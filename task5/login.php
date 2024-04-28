@@ -5,11 +5,11 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Подключение к базе данных с использованием PDO
-$host = 'localhost';
-$db   = 'exampledb';
-$user = 'root'; // измените на свои учетные данные
-$pass = ''; // измените на свой пароль
-$charset = 'utf8mb4';
+ include('../impotent.php');
+    $servername = "localhost";
+    $username = username;
+    $password = password;
+    $dbname = username;
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $options = [
