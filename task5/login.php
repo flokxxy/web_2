@@ -54,8 +54,8 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute(['username' => $username, 'password' => $hashed_password]);
 
 
-echo "Логин:" . $_COOKIE['log'];
-echo "Пароль:" . $_COOKIE['pas'];
+echo "Логин:" . $_GET['log'];
+echo "Пароль:" . $_GET['pas'];
 echo "Пароль hash: $hashed_password ";
 echo "Новый пользователь успешно добавлен.";
 ?>
