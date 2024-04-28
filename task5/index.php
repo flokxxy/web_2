@@ -12,6 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $messages[] = $_COOKIE['logMASS'];
         setcookie('logMASS', '', time() - 3600);
     }
+    if (!empty($_COOKIE['flag'])) {
+        $messages[] = 'a? '.$_COOKIE['flag'];
+        setcookie('flag', '', time() - 3600);
+    }
 
     if (!empty($_COOKIE['save'])) {
         $messages[] = 'Спасибо, результаты сохранены.';
