@@ -137,13 +137,13 @@ else
             }
         }
     } catch (\PDOException $e) {
-        throw new \PDOException($e->getMessage(), (int)$e->getCode());
+        setcookie('DBERROR', 'Error : ' . $e->getMessage());
     }
 
     if($loggined){
         $_SESSION['login'] = $_POST['username'];
         $_SESSION['password'] = $_POST['password'];
-        echo "есть";
+
     }
     else{
         $_SESSION['login'] = '';
