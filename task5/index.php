@@ -8,9 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $messages = array();
 
     if (!empty($_COOKIE['save'])) {
-        setcookie('save', '', 100000);
-        setcookie('login', '', 100000);
-        setcookie('pass', '', 100000);
+        
         $messages[] = 'Спасибо, результаты сохранены.';
 
 
@@ -20,16 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 strip_tags($_COOKIE['login']),
                 strip_tags($_COOKIE['pass']));
         }
-    }
 
-    
-//проверка
-    if (isset($_COOKIE['save'])) {
-    echo "Cookie 'save' is set!<br>";
-    echo "Value is: " . $_COOKIE['save'];
-} else {
-    echo "Cookie 'save' is not set!";
-}
+        setcookie('save', '', 100000);
+        setcookie('login', '', 100000);
+        setcookie('pass', '', 100000);
+    }
+        
 
     $errors = array();
     $errors['fio'] = !empty($_COOKIE['fio_error']);
