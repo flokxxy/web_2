@@ -142,7 +142,7 @@ else
     } catch (\PDOException $e) {
         setcookie('DBERROR', 'Error : ' . $e->getMessage());
     }
-    setcookie('flag', '1');
+    setcookie('flag', $flag);
     setcookie('logMASS',$_POST['username'].' '.$_POST['password'] . ' ' . $loggined .'<br>');
 
     if($loggined){
