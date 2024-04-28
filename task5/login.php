@@ -122,7 +122,7 @@ else
 
     $loggined=false;
     $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
+    $flag = '';
     try {
         $pdo = new PDO($dsn, $username, $password, $options);
         $pr = "SELECT * FROM users";
@@ -130,17 +130,19 @@ else
         if (!$session_started) {
             session_start();
         }
+
         while ($row = $issue->fetch()) {
+            $flag=$flag.$row['username']." - ". $hashed_password == $row['password'].'<br>';
             if($_POST['username'] == $row['username'] && $hashed_password == $row['password']) {
                 $loggined = true;
-                setcookie('flag', '1');
+
                 break;
             }
         }
     } catch (\PDOException $e) {
         setcookie('DBERROR', 'Error : ' . $e->getMessage());
     }
-
+    setcookie('flag', '1');
     setcookie('logMASS',$_POST['username'].' '.$_POST['password'] . ' ' . $loggined .'<br>');
 
     if($loggined){
