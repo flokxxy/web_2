@@ -54,5 +54,6 @@ $stmt->execute(['username' => $username, 'password' => $hashed_password]);
 */
 echo "Логин: $username\n";
 echo "Пароль: $password (сохранен в хешированном виде)\n";
+echo "Пароль hash: $hashed_password (сохранен в хешированном виде)\n";
 echo "Новый пользователь успешно добавлен.";
 ?>
