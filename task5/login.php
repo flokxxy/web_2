@@ -53,8 +53,9 @@ $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
 $stmt = $pdo->prepare($sql);
 $stmt->execute(['username' => $username, 'password' => $hashed_password]);
 
-echo "Логин: $username\n";
-echo "Пароль: $password (сохранен в хешированном виде)\n";
+
+echo "Логин: $_COOKIE['log']\n";
+echo "Пароль: $_COOKIE['pas'] (сохранен в хешированном виде)\n";
 echo "Пароль hash: $hashed_password (сохранен в хешированном виде)\n";
 echo "Новый пользователь успешно добавлен.";
 ?>
