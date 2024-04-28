@@ -19,7 +19,7 @@ $options = [
 ];
 
 try {
-    $pdo = new PDO($dbname, $username, $password, $options);
+    $pdo = new PDO($dsn, $username, $password, $options);
 } catch (\PDOException $e) {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
