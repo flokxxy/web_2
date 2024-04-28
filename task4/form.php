@@ -30,13 +30,13 @@ if (!empty($messages)) {
 <div class="form-structor">
     <h2 class="form-title">Форма</h2>
     <form action="index.php" method="POST" class="form_main">
-        <div class="form-group">
+        
             <label>
             <strong> ФИО: </strong>
             <br>
             <input type="text" class="form-control" id="fio" name="fio" required value="<?php echo htmlspecialchars($values['fio'] ?? ''); ?>">
         </label>
-        </div>
+        
         <div class="form-group">
             <label for="phone">Телефон:</label>
             <input type="tel" class="form-control" id="phone" name="phone" required value="<?php echo htmlspecialchars($values['phone'] ?? ''); ?>">
