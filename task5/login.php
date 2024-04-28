@@ -3,7 +3,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-/*
+
 // Подключение к базе данных с использованием PDO
 $host = 'localhost';
 $db   = 'exampledb';
@@ -23,7 +23,7 @@ try {
 } catch (\PDOException $e) {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
-*/
+
 
 // Функция для генерации уникального логина
 function generateUsername() {
@@ -46,12 +46,12 @@ $password = generatePassword();
 
 // Хеширование пароля
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-/*
+
 // Вставка данных в базу
 $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
 $stmt = $pdo->prepare($sql);
 $stmt->execute(['username' => $username, 'password' => $hashed_password]);
-*/
+
 echo "Логин: $username\n";
 echo "Пароль: $password (сохранен в хешированном виде)\n";
 echo "Пароль hash: $hashed_password (сохранен в хешированном виде)\n";
