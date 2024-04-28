@@ -1,7 +1,5 @@
 <?php
 
-
-
 header('Content-Type: text/html; charset=UTF-8');
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -9,6 +7,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (!empty($_COOKIE['DBERROR'])) {
         $messages[] = $_COOKIE['DBERROR'] . '<br><br>';
         setcookie('DBERROR', '', time() - 3600);
+    }
+    if (!empty($_COOKIE['logMASS'])) {
+        $messages[] = $_COOKIE['logMASS'];
+        setcookie('logMASS', '', time() - 3600);
     }
 
     if (!empty($_COOKIE['save'])) {
