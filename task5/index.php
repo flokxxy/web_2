@@ -234,7 +234,7 @@ else {
 
 
 
-            $sql = "INSERT INTO request_users (username, fio, phone, email, birthdate, gender, bio) VALUES ('$login','$fio', '$phone', '$email', '$birthdate', '$gender', '$bio')";
+            $sql = "INSERT INTO request_users (login, fio, phone, email, birthdate, gender, bio) VALUES ('$login','$fio', '$phone', '$email', '$birthdate', '$gender', '$bio')";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $lastId = $conn->lastInsertId();
