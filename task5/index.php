@@ -9,7 +9,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     if (!empty($_COOKIE['save'])) {
         setcookie('save', '', 100000);
+        setcookie('login', '', 100000);
+        setcookie('pass', '', 100000);
         $messages[] = 'Спасибо, результаты сохранены.';
+
+
+        if (!empty($_COOKIE['pass'])) {
+            $messages[] = sprintf('Вы можете <a href="login.php">войти</a> с логином <strong>%s</strong>
+        и паролем <strong>%s</strong> для изменения данных.',
+                strip_tags($_COOKIE['login']),
+                strip_tags($_COOKIE['pass']));
+        }
     }
 
     $errors = array();
@@ -74,10 +84,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $values['bio'] = empty($_COOKIE['bio_value']) ? '' : $_COOKIE['bio_value'];
     $values['contract'] = empty($_COOKIE['contract_value']) ? '' : $_COOKIE['contract_value'];
 
+
+    if (empty($errors) && !empty($_COOKIE[session_name()]) &&
+        session_start() && !empty($_SESSION['login'])) {
+        // TODO: загрузить данные пользователя из БД
+        // и заполнить переменную $values,
+        // предварительно санитизовав.
+        printf('Вход с логином %s, uid %d', $_SESSION['login'], $_SESSION['uid']);
+    }
+
+
     include('form.php');
     exit();
 }
-else{
+else {
 
     $fio = $phone = $email = $birthdate = $gender = '';
     $langs = [];
@@ -161,37 +181,89 @@ else{
     }
 
 
-    include('../impotent.php');
+
+    function generateUsername() {
+        return 'user_' . uniqid(); // генерация уникального ID для простоты
+    }
+
+// Функция для генерации безопасного пароля
+    function generatePassword($length = 12)
+    {
+        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?';
+        $password = '';
+        for ($i = 0; $i < $length; $i++) {
+            $password .= $chars[random_int(0, strlen($chars) - 1)];
+        }
+    }
+
+
+
+        include('../impotent.php');
     $servername = "localhost";
     $username = username;
     $password = password;
     $dbname = username;
 
-    try {
-        $conn = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "Connected successfully ";
-        $sql = "INSERT INTO request (fio, phone, email, birthdate, gender, bio)
-VALUES ('$fio', '$phone', '$email', '$birthdate', '$gender', '$bio')";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        $lastId = $conn->lastInsertId();
 
-        for ($i = 0; $i < count($langs); $i++) {
-            $sql = "SELECT id_lang FROM Program_language WHERE name_lang = :langName";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':langName', $langs[$i]);
-            $stmt->execute();
-            $result = $stmt->fetch();
-            $lang_id = $result['id_lang'];
-            $sql = "INSERT INTO feedback (id, id_lang) VALUES ($lastId, $lang_id)";
-            $stmt = $conn->prepare($sql);
-            $stmt->execute();
-        }
-        echo nl2br("\nNew record created successfully");
-    } catch(PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
+    if (!empty($_COOKIE[session_name()]) &&
+        session_start() && !empty($_SESSION['login'])) {
+        // TODO: перезаписать данные в БД новыми данными,
+        // кроме логина и пароля.
     }
+    else {
+        // Генерируем уникальный логин и пароль.
+        // TODO: сделать механизм генерации, например функциями rand(), uniquid(), md5(), substr().
+        $login = generateUsername();
+        $pass = generatePassword();
+
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        // Сохраняем в Cookies.
+        setcookie('login', $login);
+        setcookie('pass', $pass);
+
+
+        try {
+            $conn = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            echo "Connected successfully ";
+
+            // Вставка данных в базу
+            $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute(['username' => $username, 'password' => $hashed_password]);
+
+
+
+            $sql = "INSERT INTO request_users (fio, phone, email, birthdate, gender, bio)
+VALUES ('$fio', '$phone', '$email', '$birthdate', '$gender', '$bio')";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $lastId = $conn->lastInsertId();
+
+
+            for ($i = 0; $i < count($langs); $i++) {
+                $sql = "SELECT id_lang FROM Program_language WHERE name_lang = :langName";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':langName', $langs[$i]);
+                $stmt->execute();
+                $result = $stmt->fetch();
+                $lang_id = $result['id_lang'];
+                $sql = "INSERT INTO feedback (id, id_lang) VALUES ($lastId, $lang_id)";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+            }
+            echo nl2br("\nNew record created successfully");
+        } catch(PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
+    }
+
+    setcookie('save', '1');
+
+    // Делаем перенаправление.
+    header('Location: ./');
+
     $conn = null;
 }
 ?>
