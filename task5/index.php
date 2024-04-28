@@ -6,7 +6,11 @@ header('Content-Type: text/html; charset=UTF-8');
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $messages = array();
-
+    if (!empty($_COOKIE['DBERROR'])) {
+        $messages[] = $_COOKIE['DBERROR'] . '<br><br>';
+        setcookie('DBERROR', '', time() - 3600);
+    }
+    
     if (!empty($_COOKIE['save'])) {
         $messages[] = 'Спасибо, результаты сохранены.';
         if (!empty($_COOKIE['pass'])) {
