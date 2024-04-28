@@ -3,13 +3,10 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <!--
     <link rel="stylesheet" href="style.css">
-  
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    -->
     <meta charset="UTF-8">
-    <title>task 4</title>
+    <title>task 3</title>
 </head>
 
 
@@ -30,33 +27,36 @@ if (!empty($messages)) {
 <div class="form-structor">
     <h2 class="form-title">Форма</h2>
     <form action="index.php" method="POST" class="form_main">
-        
-            <label>
-            <strong> ФИО: </strong>
-            <br>
-            <input type="text" class="form-control" id="fio" name="fio"  value="<?php echo htmlspecialchars($values['fio'] ?? ''); ?>">
-        </label>
-        
+        <div class="form-group">
+            <label for="fio">ФИО:</label>
+            <input type="text" id="fio" name="fio" 
+                <?php if ($errors['fio']) {print 'class="error"';} ?> value="<?php print $values['fio']; ?>" placeholder="ФИО" />
+        </div>
         <div class="form-group">
             <label for="phone">Телефон:</label>
-            <input type="tel" class="form-control" id="phone" name="phone"  value="<?php echo htmlspecialchars($values['phone'] ?? ''); ?>">
+            <input type="tel" id="phone" name="phone" 
+                <?php if ($errors['phone']) {print 'class="error"';} ?> value="<?php print $values['phone']; ?>" placeholder="+7(___)___-__-__" />
         </div>
         <div class="form-group">
             <label for="email">E-mail:</label>
-            <input type="email" class="form-control" id="email" name="email" required value="<?php echo htmlspecialchars($values['email'] ?? ''); ?>">
+            <input type="email" class="form-control" id="email" name="email" 
+                <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>" placeholder="email" />
         </div>
         <div class="form-group">
             <label for="birthdate">Дата рождения:</label>
-            <input type="date" class="form-control" id="birthdate" name="birthdate" required value="<?php echo htmlspecialchars($values['birthdate'] ?? ''); ?>">
+            <input type="date" class="form-control" id="birthdate" name="birthdate" 
+                <?php if ($errors['birthdate']) {print 'class="error"';} ?> value="<?php print $values['birthdate']; ?>" />
         </div>
         <div class="form-group">
             <label>Пол:</label>
             <div>
-                <input type="radio" id="male" name="gender" value="male" required <?php echo ($values['gender'] ?? '') === 'male' ? 'checked' : ''; ?>>
+                <input type="radio" id="male" name="gender" value="male"
+                    <?php if ($values['gender']==='male') {print 'checked';} ?>"
                 <label for="male">Мужской</label>
             </div>
             <div>
-                <input type="radio" id="female" name="gender" value="female" <?php echo ($values['gender'] ?? '') === 'female' ? 'checked' : ''; ?>>
+                <input type="radio" id="female" name="gender" value="female"
+                <?php if ($values['gender']==='female') {print 'checked';} ?>"
                 <label for="female">Женский</label>
             </div>
         </div>
@@ -78,11 +78,11 @@ if (!empty($messages)) {
         </div>
         <div class="form-group">
             <label for="bio">Биография:</label>
-            <textarea class="form-control" id="bio" name="bio" rows="4" required <?php if ($errors['bio']) {print 'class="error"';} ?>
+            <textarea class="form-control" id="bio" name="bio" rows="4"  <?php if ($errors['bio']) {print 'class="error"';} ?>
             ><?php print $values['bio']; ?></textarea>
         </div>
         <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="contract" name="contract" required
+            <input type="checkbox" class="form-check-input" id="contract" name="contract" 
                 <?php if ($errors['contract']) {print 'class="error"';} ?> value="" />
             <label class="form-check-label" for="contract">С контрактом ознакомлен(а)</label>
         </div>
