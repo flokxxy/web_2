@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 
 header('Content-Type: text/html; charset=UTF-8');
@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         printf('Вход с логином %s, uid %d', $_SESSION['login'], $_SESSION['uid']);
     }
 
-    $messages[] = sprintf('<a href ="login.php?enter=1> Enter (выход) </a>');
+    //$messages[] = sprintf('<a href ="login.php?enter=1> Enter (выход) </a>');
 
 
 
