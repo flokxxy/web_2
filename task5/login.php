@@ -11,7 +11,7 @@ error_reporting(E_ALL);
     $password = password;
     $dbname = username;
 
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$dsn = "mysql:host=localhost;dbname=$dbname,$username, $password";
 $options = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
