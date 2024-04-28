@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (!empty($_COOKIE['save'])) {
         
         $messages[] = 'Спасибо, результаты сохранены.';
+        $messages[] = !empty($_COOKIE['pass']);
 
 
         if (!empty($_COOKIE['pass'])) {
