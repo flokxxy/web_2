@@ -16,6 +16,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $messages[] = 'a? '.$_COOKIE['flag'];
         setcookie('flag', '', time() - 3600);
     }
+    if (!empty($_COOKIE['kkk'])) {
+        $messages[] = 'how? '.unserialize($_COOKIE['kkk']);
+        setcookie('kkk', '', time() - 3600);
+    }
 
     if (!empty($_COOKIE['save'])) {
         $messages[] = 'Спасибо, результаты сохранены.';
