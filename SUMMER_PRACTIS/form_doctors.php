@@ -1,4 +1,5 @@
 <?php
+
 include ('config.php'); // подключение к базе данных
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -8,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $specialty = $_POST['specialty'];
     $fee = $_POST['fee'];
     $commission = $_POST['commission'];
-/*
+
     include('../impotent.php');
     $servername = "localhost";
     $username = username;
@@ -21,8 +22,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } catch (PDOException $e) {
         die("Не могу подключиться к базе данных: " . $e->getMessage());
     }
-*/
-    $sql = "INSERT INTO Doctors (FullName, Specialty, ConsultationFee, Commission) VALUES ( $fullName, $specialty, $fee, $commission)";
+
+    $sql = "INSERT INTO Doctors (FullName, Specialty, ConsultationFee, Commission) VALUES ( :fullName, :specialty, :fee, :commission)";
+    $sql->bindParam(':fullName', $fullName);
+    $sql->bindParam(':specialty', $specialty);
+    $sql->bindParam(':fee', $fee);
+    $sql->bindParam(':commission', $commission);
+    
+
+    
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     $lastId = $pdo->lastInsertId();
