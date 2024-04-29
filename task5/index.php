@@ -263,7 +263,7 @@ else {
             }
             echo nl2br("\nNew record created successfully");
         } catch(PDOException $e) {
-            echo "Connection failed: " . $e->getMessage();
+            setcookie('DBERROR', 'Error1 : ' . $e->getMessage());
         }
     }
 
