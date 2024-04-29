@@ -4,13 +4,13 @@
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $fullName = $specialty = $fee = $commission = '';
+    //$fullName = $specialty = $fee = $commission = '';
     $fullName = $_POST['fullName'];
     $specialty = $_POST['specialty'];
     $fee = $_POST['fee'];
     $commission = $_POST['commission'];
 
-    include('../impotent.php');
+    include('../../impotent.php');
     $servername = "localhost";
     $username = username;
     $password = password;
@@ -24,6 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $sql = "INSERT INTO Doctors (FullName, Specialty, ConsultationFee, Commission) VALUES ( :fullName, :specialty, :fee, :commission)";
+    $stmt = $pdo->prepare($sql);
+
     $sql->bindParam(':fullName', $fullName);
     $sql->bindParam(':specialty', $specialty);
     $sql->bindParam(':fee', $fee);
@@ -31,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-    $stmt = $pdo->prepare($sql);
+
     $stmt->execute();
     $lastId = $pdo->lastInsertId();
 
