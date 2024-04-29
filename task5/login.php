@@ -113,20 +113,17 @@ else
     $password = password;
     $dbname = username;
 
-    $dsn = "mysql:host=$servername;dbname=$dbname; charset=utf8mb4";
-    $options = [
-        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_EMULATE_PREPARES   => false,
-    ];
+    $db = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password,
+        [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    
 
     $loggined=false;
     $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $flag = '';
     try {
-        $pdo = new PDO($dsn, $username, $password, $options);
+        //$pdo = new PDO($dsn, $username, $password, $options);
         $pr = "SELECT * FROM users";
-        $issue = $pdo->query($pr);
+        $issue = $db->query($pr);
         if (!$session_started) {
             session_start();
         }
