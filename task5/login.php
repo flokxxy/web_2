@@ -1,12 +1,6 @@
 
 <?php
 
-header('Cache-Control: no-cache, must-revalidate');
-// Включение отображения ошибок для отладки
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 $session_started = false;
 if ($_COOKIE[session_name()] && session_start()) {
     $session_started = true;
@@ -20,19 +14,23 @@ if ($_COOKIE[session_name()] && session_start()) {
         exit();
     }
 }
+// Включение отображения ошибок для отладки
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-if(!empty($_GET['log'])){
-    echo " Логин: " . $_GET['log'];
-    echo " Пароль: " . $_GET['pas'];
-}
+// Подключение к базе данных с использованием PDO
 
-echo " Новый пользователь успешно добавлен.<br>";
+
+
+echo "Логин:" . $_GET['log'];
+echo "Пароль:" . $_GET['pas'];
+echo "Новый пользователь успешно добавлен.";
 
 //$hashed_password = password_hash($_GET['pas'], PASSWORD_DEFAULT);
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    echo 'запрос get<br>';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -109,47 +107,60 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 }
 else
 {
-    echo 'запрос post<br>';
-
-    include('../SecretData.php');
+    include('../impotent.php');
     $servername = "localhost";
-    $username = user;
-    $password = pass;
-    $dbname = user;
+    $username = username;
+    $password = password;
+    $dbname = username;
 
     $db = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password,
         [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-    
+
 
     $loggined=false;
-    $hashed_password = md5($_POST['password']);
+    $hashed_password = md5($_POST['password'], PASSWORD_DEFAULT);
+    $flag = '';
     try {
+        //$pdo = new PDO($dsn, $username, $password, $options);
+        $pr = "SELECT * FROM users";
+        $issue = $db->query($pr);
+        if (!$session_started) {
+            session_start();
+        }
 
-        $select = "SELECT * FROM users";
-        $issue = $db->query($select);
-        while ($row = $issue->fetch()){
+        $kkk = $issue->fetchall();
+        setcookie('kkk', serialize($kkk));
+        /*while ($row = $issue->fetch()) {
+            $flag=$flag.$row['username']." - ". $hashed_password == $row['password'].'<br>';
             if($_POST['username'] == $row['username'] && $hashed_password == $row['password']) {
                 $loggined = true;
+
                 break;
             }
-        }
-    } catch (PDOException $e) {
+        }*/
+    }catch (PDOException $e) {
         setcookie('DBERROR', 'Error2 : ' . $e->getMessage());
     }
-    if (!$session_started) {
-        session_start();
-    }
-    setcookie('logMASS',$_POST['username'].' '.$_POST['password'] . ' isLogged: ' . $loggined .'<br>');
+    setcookie('flag', $flag);
+    setcookie('logMASS',$_POST['username'].' '.$_POST['password'] . ' ' . $loggined .'<br>');
+
     if($loggined){
         $_SESSION['login'] = $_POST['username'];
         $_SESSION['password'] = $_POST['password'];
         $_SESSION['hasentered'] = true;
+
     }
     else{
         $_SESSION['login'] = '';
         $_SESSION['password'] = '';
         $_SESSION['hasentered'] = false;
     }
-    header('Location: ./');
+
+
+
+
+
+
+header('Location: ./');
 }
 ?>
