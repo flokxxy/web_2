@@ -11,13 +11,13 @@
 <body>
 <form action="form_doctors.php" method="post">
     <label for="fullName">ФИО врача:</label>
-    <input type="text" id="fullName" name="fullName" required>
+    <input type="text" id="fullName" name="fullName" >
     <label for="specialty">Специальность:</label>
-    <input type="text" id="specialty" name="specialty" required>
+    <input type="text" id="specialty" name="specialty" >
     <label for="fee">Стоимость приема:</label>
-    <input type="number" id="fee" name="fee" required step="0.01">
+    <input type="number" id="fee" name="fee"  step="100">
     <label for="commission">Процент отчисления:</label>
-    <input type="number" id="commission" name="commission" required step="0.01">
+    <input type="number" id="commission" name="commission"  step="1">
     <button type="submit">Добавить врача</button>
 </form>
 </body>
