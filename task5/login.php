@@ -115,7 +115,7 @@ else
 
     $db = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password,
         [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-    
+
 
     $loggined=false;
     $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -138,8 +138,8 @@ else
                 break;
             }
         }*/
-    } catch (\PDOException $e) {
-        setcookie('DBERROR', 'Error : ' . $e->getMessage());
+    }catch (PDOException $e) {
+        setcookie('DBERROR', 'Error2 : ' . $e->getMessage());
     }
     setcookie('flag', $flag);
     setcookie('logMASS',$_POST['username'].' '.$_POST['password'] . ' ' . $loggined .'<br>');
