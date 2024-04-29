@@ -30,8 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-    $stmt->execute();
-    $lastId = $pdo->lastInsertId();
+   // $stmt->execute();
+   // $lastId = $pdo->lastInsertId();
 
 
 
