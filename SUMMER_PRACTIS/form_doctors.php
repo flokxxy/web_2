@@ -2,7 +2,7 @@
 include ('config.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
+
     $fullName = $_POST['fullName'];
     $specialty = $_POST['specialty'];
     $fee = $_POST['fee'];
@@ -20,10 +20,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } catch (PDOException $e) {
         die("Не могу подключиться к базе данных: " . $e->getMessage());
     }
-    
-    $sql = "INSERT INTO Doctors (FullName, Specialty, ConsultationFee, Commission) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO Doctors (FullName, Specialty, ConsultationFee, Commission) VALUES ( $fullName, $specialty, $fee, $commission)";
     $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $lastId = $pdo->lastInsertId();
 
+    
+    
     try {
         $stmt->execute([$fullName, $specialty, $fee, $commission]);
         echo "Врач успешно добавлен.";
