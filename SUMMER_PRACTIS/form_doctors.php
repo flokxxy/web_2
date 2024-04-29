@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fee = $_POST['fee'];
     $commission = $_POST['commission'];
 
-    include('../../impotent.php');
+    include('../impotent.php');
     $servername = "localhost";
     $username = username;
     $password = password;
