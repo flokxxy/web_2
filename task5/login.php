@@ -118,7 +118,7 @@ else
 
 
     $loggined=false;
-    $hashed_password = md5($_POST['password'], PASSWORD_DEFAULT);
+    $hashed_password = md5($_POST['password']);
     $flag = '';
     try {
         //$pdo = new PDO($dsn, $username, $password, $options);
@@ -128,16 +128,15 @@ else
             session_start();
         }
 
-        $kkk = $issue->fetchall();
-        setcookie('kkk', serialize($kkk));
-        /*while ($row = $issue->fetch()) {
+        
+        while ($row = $issue->fetch()) {
             $flag=$flag.$row['username']." - ". $hashed_password == $row['password'].'<br>';
             if($_POST['username'] == $row['username'] && $hashed_password == $row['password']) {
                 $loggined = true;
 
                 break;
             }
-        }*/
+        }
     }catch (PDOException $e) {
         setcookie('DBERROR', 'Error2 : ' . $e->getMessage());
     }
