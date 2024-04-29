@@ -3,8 +3,6 @@
 //include ('config.php'); // подключение к базе данных
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    //$fullName = $specialty = $fee = $commission = '';
     $fullName = $_POST['fullName'];
     $specialty = $_POST['specialty'];
     $fee = $_POST['fee'];
@@ -23,26 +21,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Не могу подключиться к базе данных: " . $e->getMessage());
     }
 
-    $sql = "INSERT INTO Doctors (FullName, Specialty, ConsultationFee, Commission) VALUES ( $fullName, $specialty, $fee, $commission)";
+    // Используйте плейсхолдеры в запросе для безопасности
+    $sql = "INSERT INTO Doctors (FullName, Specialty, ConsultationFee, Commission) VALUES (:fullName, :specialty, :fee, :commission)";
     $stmt = $pdo->prepare($sql);
 
-
-
-
-
-   // $stmt->execute();
-   // $lastId = $pdo->lastInsertId();
-
-
+    // Привязка значений к плейсхолдерам
+    $stmt->bindParam(':fullName', $fullName);
+    $stmt->bindParam(':specialty', $specialty);
+    $stmt->bindParam(':fee', $fee);
+    $stmt->bindParam(':commission', $commission);
 
     try {
-        $stmt->execute([$fullName, $specialty, $fee, $commission]);
+        $stmt->execute();
         echo "Врач успешно добавлен.";
+        $lastId = $pdo->lastInsertId();
+        echo "ID нового врача: $lastId";
     } catch (PDOException $e) {
         die("Ошибка при добавлении врача: " . $e->getMessage());
     }
-}else {
-
+} else {
     header("Location: form_doctors.html");
     exit;
 }
