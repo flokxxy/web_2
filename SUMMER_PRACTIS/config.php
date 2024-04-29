@@ -1,6 +1,6 @@
 <?php
 
-include('../impotent.php');
+include('../../impotent.php');
 $servername = "localhost";
 $username = username;
 $password = password;
