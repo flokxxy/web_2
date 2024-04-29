@@ -1,6 +1,7 @@
 <?php
 
 header('Content-Type: text/html; charset=UTF-8');
+header('Cache-Control: no-cache, must-revalidate');
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $messages = array();
@@ -12,22 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $messages[] = $_COOKIE['logMASS'];
         setcookie('logMASS', '', time() - 3600);
     }
-    if (!empty($_COOKIE['flag'])) {
-        $messages[] = 'a? '.$_COOKIE['flag'];
-        setcookie('flag', '', time() - 3600);
-    }
-    if (!empty($_COOKIE['kkk'])) {
-        $messages[] = 'how? '.unserialize($_COOKIE['kkk']);
-        setcookie('kkk', '', time() - 3600);
-    }
 
     if (!empty($_COOKIE['save'])) {
         $messages[] = 'Спасибо, результаты сохранены.';
         if (!empty($_COOKIE['pass'])) {
-            $messages[] = sprintf('Вы можете <a href="login.php?log=%s&pas=%s"> войти </a> с логином <strong>%s</strong>
-        и паролем <strong>%s</strong> для изменения данных.',
-                strip_tags($_COOKIE['login']),
-                strip_tags($_COOKIE['pass']),
+            $messages[] = sprintf('Вы можете войти с логином <strong>%s</strong>
+        и паролем <strong>%s</strong> для изменения данных.<br>',
                 strip_tags($_COOKIE['login']),
                 strip_tags($_COOKIE['pass']));
         }
@@ -35,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         setcookie('login', '', 100000);
         setcookie('pass', '', 100000);
     }
-
 
     $errors = array();
     $errors['fio'] = !empty($_COOKIE['fio_error']);
@@ -101,23 +91,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
     $started_session = session_start();
-    $messages[] = '1:'.!empty($_COOKIE[session_name()]) .'<br> :: '. $started_session .'<br> :: '. !empty($_SESSION['hasentered']).'<br> ';
+    $messages[] = 'has entered: '. !empty($_SESSION['hasentered']).'<br> ';
 
     if (!empty($_COOKIE[session_name()]) &&
         $started_session && !empty($_SESSION['hasentered'])) {
-        $messages[]='Вход с логином: '. $_SESSION['login'];
+        $messages[]='Вход с логином: '. $_SESSION['login'] . '<br>';
         // TODO: загрузить данные пользователя из БД
         // и заполнить переменную $values,
         // предварительно санитизовав.
-        printf('Вход с логином %s, uid %d', $_SESSION['login'], $_SESSION['uid']);
+        $messages[] = '<a href ="login.php?enter=1"> Выйти </a>';
     }
     else{
-        $messages[]='невыолнен вход';
+        $messages[]='<a href="login.php?">Войти</a><br>';
     }
-
-    $messages[] = '<a href ="login.php?enter=1"> Enter (выход) </a>';
-
-
 
     include('form.php');
     exit();
@@ -208,11 +194,11 @@ else {
     }
 
 
-    include('../impotent.php');
+    include('../SecretData.php');
     $servername = "localhost";
-    $username = username;
-    $password = password;
-    $dbname = username;
+    $username = user;
+    $password = pass;
+    $dbname = user;
 
 
     if (!empty($_COOKIE[session_name()]) &&
@@ -221,52 +207,29 @@ else {
         // кроме логина и пароля.
     }
     else {
+        // ААААААААААААААААААААААААААААААААААААААА
         $login = generateUsername();
         $pass = rand();
-        $hashed_password = password_hash($pass, PASSWORD_DEFAULT);
-
+        //$hashed_password = password_hash($pass, PASSWORD_DEFAULT);
+        $hashed_password = md5($pass);
         // Сохраняем в Cookies.
         setcookie('login', $login);
         setcookie('pass', $pass);
 
         $_SESSION['hasentered'] = false;
 
-
         try {
             $conn = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Connected successfully ";
 
             // Вставка данных в базу
             $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
             $stmt = $conn->prepare($sql);
             $stmt->execute(['username' => $login, 'password' => $hashed_password]);
-
-
-
-            $sql = "INSERT INTO request_users (login, fio, phone, email, birthdate, gender, bio) VALUES ('$login','$fio', '$phone', '$email', '$birthdate', '$gender', '$bio')";
-            $stmt = $conn->prepare($sql);
-            $stmt->execute();
-            $lastId = $conn->lastInsertId();
-
-
-            for ($i = 0; $i < count($langs); $i++) {
-                $sql = "SELECT id_lang FROM Program_language WHERE name_lang = :langName";
-                $stmt = $conn->prepare($sql);
-                $stmt->bindParam(':langName', $langs[$i]);
-                $stmt->execute();
-                $result = $stmt->fetch();
-                $lang_id = $result['id_lang'];
-                $sql = "INSERT INTO feedback (id, id_lang) VALUES ($lastId, $lang_id)";
-                $stmt = $conn->prepare($sql);
-                $stmt->execute();
-            }
-            echo nl2br("\nNew record created successfully");
         } catch(PDOException $e) {
             setcookie('DBERROR', 'Error1 : ' . $e->getMessage());
         }
     }
-
     setcookie('save', '1');
 
     // Делаем перенаправление.
