@@ -223,7 +223,7 @@ else {
     else {
         $login = generateUsername();
         $pass = rand();
-        $hashed_password = md5($pass, PASSWORD_DEFAULT);
+        $hashed_password = md5($pass);
 
         // Сохраняем в Cookies.
         setcookie('login', $login);
