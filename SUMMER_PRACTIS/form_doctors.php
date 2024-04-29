@@ -23,13 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Не могу подключиться к базе данных: " . $e->getMessage());
     }
 
-    $sql = "INSERT INTO Doctors (FullName, Specialty, ConsultationFee, Commission) VALUES ( :fullName, :specialty, :fee, :commission)";
+    $sql = "INSERT INTO Doctors (FullName, Specialty, ConsultationFee, Commission) VALUES ( $fullName, $specialty, $fee, $commission)";
     $stmt = $pdo->prepare($sql);
 
-    $sql->bindParam(':fullName', $fullName);
-    $sql->bindParam(':specialty', $specialty);
-    $sql->bindParam(':fee', $fee);
-    $sql->bindParam(':commission', $commission);
 
 
 
