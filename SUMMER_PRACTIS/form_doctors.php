@@ -1,6 +1,6 @@
 <?php
 
-include ('config.php'); // подключение к базе данных
+//include ('config.php'); // подключение к базе данных
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fee = $_POST['fee'];
     $commission = $_POST['commission'];
 
-    include('../impotent.php');
+    include('../../impotent.php');
     $servername = "localhost";
     $username = username;
     $password = password;
@@ -28,9 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql->bindParam(':specialty', $specialty);
     $sql->bindParam(':fee', $fee);
     $sql->bindParam(':commission', $commission);
-    
 
-    
+
+
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     $lastId = $pdo->lastInsertId();
