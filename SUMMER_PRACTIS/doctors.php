@@ -12,7 +12,7 @@
 <form action="form_doctors.php" method="post">
     <label for="fullName">ФИО врача:</label>
     <input type="text" name="fullName"
-           <?php if($errors['fillName']) {print 'class="error"';}?> value="<?php $values['fullName']; ?>" />
+           <?php if($errors['fullName']) {print 'class="error"';}?> value="<?php $values['fullName']; ?>" />
     <label for="specialty">Специальность:</label>
     <input type="text" id="specialty" name="specialty" value="<?php echo isset($_COOKIE['value_specialty']) ? htmlspecialchars($_COOKIE['value_specialty']) : ''; ?>">
     <label for="fee">Стоимость приема:</label>
