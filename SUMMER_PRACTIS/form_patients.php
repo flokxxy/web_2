@@ -113,15 +113,15 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     try {
         $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo 'selecting';
+        echo "selecting:,";
         $sql = "INSERT INTO Patients (LastName,FirstName, MiddleName, BirthDate, Address) VALUES (:lastName, :firstName, :middleName, :birthDate, :address)";
         $stmt = $pdo->prepare($sql);
 
-        $stmt->bindParam(':lastName', $lastName);
-        $stmt->bindParam(':firstName', $firstName);
-        $stmt->bindParam(':middleName', $middleName);
-        $stmt->bindParam(':birthDate', $birthDate);
-        $stmt->bindParam(':address', $address);
+        $stmt->bindParam(':lastName', $_POST['lastName']);
+        $stmt->bindParam(':firstName', $_POST['firstName']);
+        $stmt->bindParam(':middleName', $_POST['middleName']);
+        $stmt->bindParam(':birthDate', $_POST['birthDate']);
+        $stmt->bindParam(':address', $_POST['address']);
 
         $stmt->execute();
         echo "Пациент успешно добавлен.";
@@ -137,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     setcookie('save', '1');
 
     echo 'exit';
-    //header("Location: form_patients.php"); // Перенаправление обратно на форму
+    header("Location: form_patients.php"); // Перенаправление обратно на форму
     exit;
 
 }
