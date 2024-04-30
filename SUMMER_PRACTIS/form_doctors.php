@@ -64,6 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['form_input'] = $_POST;
 
         // Валидация входных данных
+        /*
         $errors = [];
         if (empty($fullName) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fullName'])) {
             $errors = true;
@@ -79,6 +80,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         if (!is_numeric($commission) || $commission < 0) {
             $errors['commission'] = 'Укажите корректный процент отчисления.';
+        }*/
+
+        $errors = FALSE;
+        if (empty($_POST['fullNameRealtor']) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fullNameRealtor'])) {
+            $errors = TRUE;
+            print('ФИО врача обязательно к заполнению.');
+        }
+        if(empty($_POST['specialty']||!preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]+$/u', $_POST['specialty']))){
+            $errors = TRUE;
+        }
+        if(empty($_POST['fee']||!preg_match('/^[0-9]+$/u', $_POST['fee']))){
+            $errors = TRUE;
+        }
+        if(empty($_POST['commission']||!preg_match('/^[0-9]+$/u', $_POST['commission']))){
+            $errors = TRUE;
         }
 
         if ($errors === true) {
