@@ -38,12 +38,11 @@ print($errors['address'] . '<br>');
     <label for="address">Адрес:</label>
     <input type="text" id="address" name="address" <?php if (($errors['address'])) {print 'class="error"';} ?>
            value="<?php if (isset($values['address'])) {print $values['address'];} ?>" />
-    
+
     <!--
     <button type="submit">Добавить пациента</button>
     -->
-
-    select id="patientId" name="patientId" required>
+    
     <!-- Опции загружаются из базы данных -->
     </select>
     <label for="doctorId">Выберите врача:</label>
@@ -55,7 +54,7 @@ print($errors['address'] . '<br>');
     <label for="paymentAmount">Сумма оплаты:</label>
     <input type="number" id="paymentAmount" name="paymentAmount" required step="0.01">
     <button type="submit">Записать на прием</button>
-    
+
 </form>
 </body>
 </html>
