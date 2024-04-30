@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $commission = $_POST['commission'] ?? '';
 
     $_SESSION['form_input'] = $_POST;
-   */ 
+   */
     $errors = FALSE;
     if (empty(trim($_POST['fullName'])) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fullName'])) {
         $errors = TRUE;
@@ -100,10 +100,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $sql = "INSERT INTO Doctors (FullName, Specialty, ConsultationFee, Commission) VALUES (:fullName, :specialty, :fee, :commission)";
         $stmt = $pdo->prepare($sql);
 
-        $stmt->bindParam(':fullName', $fullName);
-        $stmt->bindParam(':specialty', $specialty);
-        $stmt->bindParam(':fee', $fee);
-        $stmt->bindParam(':commission', $commission);
+        $stmt->bindParam(':fullName', $_POST['fullName']);
+        $stmt->bindParam(':specialty', $_POST['specialty']);
+        $stmt->bindParam(':fee', $_POST['fee']);
+        $stmt->bindParam(':commission', $_POST['commission']);
 
         $stmt->execute();
         echo "Врач успешно добавлен.";
@@ -121,68 +121,5 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     exit;
 
 }
-
-
-   /*
-    include('../impotent.php');
-    $servername = "localhost";
-    $username = username;
-    $password = password;
-    $dbname = username;
-
-    // Сохранение введенных значений в сессии
-    $_SESSION['form_input'] = $_POST;
-
-    // Валидация входных данных
-    $errors = false;
-    if (empty($fullName)||!preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fullName'])) {
-        setcookie('fullName', '1', time() + (86400 * 30));
-        $errors['fullName'] = 'ФИО врача обязательно к заполнению.';
-    }
-    if (empty($specialty)) {
-        $errors['specialty'] = 'Специальность врача обязательна к заполнению.';
-    }
-    if (!is_numeric($fee) || $fee <= 0) {
-        $errors['fee'] = 'Укажите корректную стоимость приема.';
-    }
-    if (!is_numeric($commission) || $commission < 0) {
-        $errors['commission'] = 'Укажите корректный процент отчисления.';
-    }
-
-    if (count($errors) === 0) {
-        try {
-            $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            $sql = "INSERT INTO Doctors (FullName, Specialty, ConsultationFee, Commission) VALUES (:fullName, :specialty, :fee, :commission)";
-            $stmt = $pdo->prepare($sql);
-
-            $stmt->bindParam(':fullName', $fullName);
-            $stmt->bindParam(':specialty', $specialty);
-            $stmt->bindParam(':fee', $fee);
-            $stmt->bindParam(':commission', $commission);
-
-            $stmt->execute();
-            echo "Врач успешно добавлен.";
-            $lastId = $pdo->lastInsertId();
-            echo "ID нового врача: $lastId";
-
-            // Очистка данных формы в сессии после успешного добавления
-            unset($_SESSION['form_input']);
-        } catch (PDOException $e) {
-            $errors['database'] = "Ошибка при добавлении врача: " . $e->getMessage();
-        }
-    }
-
-    if (!empty($errors)) {
-        $_SESSION['form_errors'] = $errors;
-
-        header("Location: form_doctors.html"); // Перенаправление обратно на форму
-        exit;
-    }
-} else {
-    header("Location: form_doctors.html");
-    exit;
-}*/
 
 ?>
