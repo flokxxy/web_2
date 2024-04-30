@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     if ($errors || empty($lastName) || empty($firstName) || empty($middleName) || empty($birthDate)|| empty($address)) {
         print('что-то не так');
-        header("Location: form_patients.php"); // Перенаправление обратно на форму
+       // header("Location: form_patients.php"); // Перенаправление обратно на форму
         exit;
     }
     else {
