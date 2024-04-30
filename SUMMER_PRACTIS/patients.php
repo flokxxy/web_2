@@ -51,8 +51,11 @@ print($errors['address'] . '<br>');
     </select>
     <label for="date">Дата приема:</label>
     <input type="datetime-local" id="date" name="date" required>
+    
+    <!-- это должно выводиться в квитанции
     <label for="paymentAmount">Сумма оплаты:</label>
     <input type="number" id="paymentAmount" name="paymentAmount" required step="0.01">
+    -->
     <button type="submit">Записать на прием</button>
 
 </form>
