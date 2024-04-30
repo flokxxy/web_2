@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }*/
 
         $errors = FALSE;
-        if (empty(trim($_POST['fullNameRealtor'])) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fullNameRealtor'])) {
+        if (empty(trim($_POST['fullName'])) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fullName'])) {
             $errors = TRUE;
             print('ФИО врача обязательно к заполнению.');
         }
