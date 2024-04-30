@@ -28,11 +28,11 @@
 
     
     <?php
-if (!empty($messages)) {
-    print('<div id="messages">');
+if (!empty($message)) {
+    print('<div id="message">');
 // Выводим все сообщения.
-foreach ($messages as $message) {
-print($message);
+foreach ($message as $m) {
+print($m);
 }
 print('</div>');
 }
