@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['form_input'] = $_POST;
 
         // Валидация входных данных
-        $errors = false;
+        $errors = [];
         if (empty($fullName) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fullName'])) {
             $errors = true;
             setcookie('fullName', '1', time() + (86400 * 30));
