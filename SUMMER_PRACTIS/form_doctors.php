@@ -1,5 +1,8 @@
 <?php
 header('Content-Type: text/html; charset=UTF-8');
+
+header('Cache-Control: no-cache, must-revalidate');
+
 session_start(); // Начало сессии для хранения данных формы и сообщений об ошибках
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
