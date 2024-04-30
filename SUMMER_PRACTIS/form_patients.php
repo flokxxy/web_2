@@ -35,12 +35,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if ($errors['birthDate']) {
         setcookie("birthDate_errors", '', time() - 3600);
         setcookie("birthDate_values", '', time() - 3600);
-        $message[] = '<div class="error">Заполните процент отчислений.</div>';
+        $message[] = '<div class="error">Заполните дату рождения.</div>';
     }
     if ($errors['address']) {
         setcookie("address_errors", '', time() - 3600);
         setcookie("address_values", '', time() - 3600);
-        $message[] = '<div class="error">Заполните процент отчислений.</div>';
+        $message[] = '<div class="error">Заполните адрес проживания.</div>';
     }
 
     $values = array();
@@ -83,8 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     else setcookie('birthDate_value', $_POST['birthDate'], time() + 30 * 24 * 60 * 60);
 
 
-    if(empty($_POST['address']) || !preg_match('^[\w\d\s-,]+(?:\d{1,4}[\w\d\s-,]*)?\s*(?:(?:ул|пр|пр-т|переулок|бульвар|набережная|проспект|ш|шоссе|тупик|пл|площадь)\s+[\w\d\s-,]+)?\s*(?:(?:дом|д)\s+\d+(?:(?:кв|квартира)\s+\d+)?)?$
-', $_POST['address'])){
+    if(empty($_POST['address'])){
         $errors = TRUE;
         setcookie("address_errors", '1', time() + 3600);
         print('Укажите корректный адрес проживания.'."\n");
