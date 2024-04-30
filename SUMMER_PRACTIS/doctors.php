@@ -27,7 +27,7 @@
 
     <label for="commission">Процент отчисления:</label>
     <input type="number" id="commission" name="commission"
-    <?php if($errors['commission']) {print 'class="error"';}?> value="<?php $values['commission']; ?> >
+    <?php if($errors['commission']) {print 'class="error"';}?> value="<?php $values['commission']; ?>" >
 
     <button type="submit">Добавить врача</button>
 </form>
