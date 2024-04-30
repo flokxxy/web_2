@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: text/html; charset=UTF-8');
-session_start(); // Начало сессии для хранения данных формы и сообщений об ошибках
+
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $message = array();
@@ -109,10 +109,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $password = password;
     $dbname = username;
 
+    echo 'try';
     try {
         $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+        echo 'selecting';
         $sql = "INSERT INTO Patients (LastName,FirstName, MiddleName, BirthDate, Address) VALUES (:lastName, :firstName, :middleName, :birthDate, :address)";
         $stmt = $pdo->prepare($sql);
 
@@ -128,14 +129,14 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         echo "ID нового пациента: $lastId";
 
         // Очистка данных формы в сессии после успешного добавления
-        unset($_SESSION['form_input']);
+       
     } catch (PDOException $e) {
         $errors['database'] = "Ошибка при добавлении врача: " . $e->getMessage();
     }
     setcookie('save', '1');
 
     echo 'exit';
-    header("Location: form_patients.php"); // Перенаправление обратно на форму
+    //header("Location: form_patients.php"); // Перенаправление обратно на форму
     exit;
 
 }
