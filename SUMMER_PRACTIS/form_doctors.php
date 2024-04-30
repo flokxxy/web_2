@@ -100,10 +100,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             print('Укажите корректный процент отчисления.'."\n");
         }
 
-        if ($errors) {
+        if ($errors || empty($fullName) || empty($specialty) || empty($fee) || empty($commission)) {
+            $_SESSION['form_errors'] = $errors;
+
+            header("Location: form_doctors.html"); // Перенаправление обратно на форму
+            exit;
+        }
+
+        /*if ($errors) {
             echo 'mistake';
             exit();
-        } else {
+        } */
+        else {
             setcookie('fullName', '', time() - 3600);
             setcookie('specialty', '', time() - 3600);
             setcookie('fee', '', time() - 3600);
