@@ -44,8 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $values['commission'] = empty($_COOKIE['commission_value']) ? '' : $_COOKIE['commission_value'];
 
     include('doctors.php');
-    exit();
-} else {
+} elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $fullName = $_POST['fullName'] ?? '';
     $specialty = $_POST['specialty'] ?? '';
@@ -78,22 +77,22 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $errors = TRUE;
         setcookie("fullName_errors", '1', time() + 3600);
         print('ФИО врача обязательно к заполнению.'."\n");
-    }
+    }else setcookie('fullName_value', $_POST['fullName'], time() + (86400 * 30));
     if(empty($_POST['specialty']) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]+$/u', $_POST['specialty'])){
         $errors = TRUE;
         setcookie("specialty_errors", '1', time() + 3600);
         print('Специальность врача обязательна к заполнению.'."\n");
-    }
+    }else setcookie('specialty_value', $_POST['specialty'], time() + (86400 * 30));
     if(empty($_POST['fee']) || !preg_match('/^[0-9]+$/u', $_POST['fee'])){
         $errors = TRUE;
         setcookie("fee_errors", '1', time() + 3600);
         print('Укажите корректную стоимость приема.'."\n");
-    }
+    }else setcookie('fee_value', $_POST['fee'], time() + (86400 * 30));
     if(empty($_POST['commission']) || !preg_match('/^[0-9]+$/u', $_POST['commission'])){
         $errors = TRUE;
         setcookie("commission_errors", '1', time() + 3600);
         print('Укажите корректный процент отчисления.'."\n");
-    }
+    }else setcookie('commission_value', $_POST['commission'], time() + (86400 * 30));
 
     if ($errors || empty($fullName) || empty($specialty) || empty($fee) || empty($commission)) {
         print('что-то не так');
