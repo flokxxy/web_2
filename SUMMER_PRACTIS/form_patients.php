@@ -89,13 +89,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     }else setcookie('address_value', $_POST['address'], time() + (86400 * 30));
 
     print($errors . '<br>');
-    print(empty($lastName) . '<br>');
-    print(empty($firstName) . '<br>');
-    print(empty($middleName) . '<br>');
-    print(empty($birthDate) . '<br>');
-    print(empty($address) . '<br>');
-    
-    if ($errors || empty($lastName) || empty($firstName) || empty($middleName) || empty($birthDate)|| empty($address)) {
+        
+    if ($errors) {
         print('что-то не так');
       //  header("Location: form_patients.php"); // Перенаправление обратно на форму
         exit;
