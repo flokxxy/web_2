@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($errors || empty($fullName) || empty($specialty) || empty($fee) || empty($commission)) {
             $_SESSION['form_errors'] = $errors;
 
-            header("Location: form_doctors.html"); // Перенаправление обратно на форму
+            header("Location: doctors.php"); // Перенаправление обратно на форму
             exit;
         }
 
@@ -150,7 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!empty($errors)) {
             $_SESSION['form_errors'] = $errors;
 
-            header("Location: form_doctors.html"); // Перенаправление обратно на форму
+            header("Location: doctors.php"); // Перенаправление обратно на форму
             exit;
         }
 
