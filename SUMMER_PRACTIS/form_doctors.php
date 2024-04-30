@@ -85,22 +85,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors = FALSE;
         if (empty(trim($_POST['fullName'])) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fullName'])) {
             $errors = TRUE;
-            print('ФИО врача обязательно к заполнению.');
+            print('ФИО врача обязательно к заполнению.'."\n");
         }
-        if(empty($_POST['specialty']||!preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]+$/u', $_POST['specialty']))){
+        if(empty($_POST['specialty']) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]+$/u', $_POST['specialty'])){
             $errors = TRUE;
-            print('Специальность врача обязательна к заполнению.\n');
+            print('Специальность врача обязательна к заполнению.'."\n");
         }
-        if(empty($_POST['fee']||!preg_match('/^[0-9]+$/u', $_POST['fee']))){
+        if(empty($_POST['fee']) || !preg_match('/^[0-9]+$/u', $_POST['fee'])){
             $errors = TRUE;
-            print('Укажите корректную стоимость приема.');
+            print('Укажите корректную стоимость приема.'."\n");
         }
-        if(empty($_POST['commission']||!preg_match('/^[0-9]+$/u', $_POST['commission']))){
+        if(empty($_POST['commission']) || !preg_match('/^[0-9]+$/u', $_POST['commission'])){
             $errors = TRUE;
-            print('Укажите корректный процент отчисления.');
+            print('Укажите корректный процент отчисления.'."\n");
         }
 
-        if ($errors === true) {
+        if ($errors) {
             echo 'mistake';
             exit();
         } else {
