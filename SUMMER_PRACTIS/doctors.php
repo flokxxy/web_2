@@ -1,4 +1,6 @@
-
+<?php
+header('Cache-Control: no-cache, must-revalidate');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,6 +53,7 @@
 
 
 <?php
+
 if (!empty($message)) {
     print('<div id="message">');
 // Выводим все сообщения.
