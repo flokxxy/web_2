@@ -25,7 +25,7 @@
     <?php if($errors['middleName']) {print 'class="error"';}?> value="<?php $values['middleName']; ?>" >
     <label for="birthDate">Дата рождения:</label>
     <input type="date" id="birthDate" name="birthDate"
-    <?php if ($errors['birthdate']) {print 'class="error"';} ?> value="<?php print $values['birthdate']; ?>">
+    <?php if ($errors['birthDate']) {print 'class="error"';} ?> value="<?php print $values['birthDate']; ?>">
     <label for="address">Адрес:</label>
     <input type="text" id="address" name="address"
     <?php if($errors['address']) {print 'class="error"';}?> value="<?php $values['address']; ?>" >
