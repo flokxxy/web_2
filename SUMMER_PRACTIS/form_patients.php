@@ -89,10 +89,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     }else setcookie('address_value', $_POST['address'], time() + (86400 * 30));
 
     print($errors . '<br>');
-        
+
     if ($errors) {
         print('что-то не так');
-      //  header("Location: form_patients.php"); // Перенаправление обратно на форму
+        header("Location: form_patients.php"); // Перенаправление обратно на форму
         exit;
     }
     else {
@@ -135,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     setcookie('save', '1');
 
     echo 'exit';
-    //header("Location: form_patients.php"); // Перенаправление обратно на форму
+    header("Location: form_patients.php"); // Перенаправление обратно на форму
     exit;
 
 }
