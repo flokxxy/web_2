@@ -45,33 +45,14 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     include('doctors.php');
 } elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+/*
     $fullName = $_POST['fullName'] ?? '';
     $specialty = $_POST['specialty'] ?? '';
     $fee = $_POST['fee'] ?? '';
     $commission = $_POST['commission'] ?? '';
 
     $_SESSION['form_input'] = $_POST;
-
-    // Валидация входных данных
-    /*
-    $errors = [];
-    if (empty($fullName) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fullName'])) {
-        $errors = true;
-        setcookie('fullName', '1', time() + (86400 * 30));
-        $errors['fullName'] = 'ФИО врача обязательно к заполнению.';
-        print("ошибка в фамилии врача");
-    } else setcookie('fullName_value', $_POST['fullName'], time() + (86400 * 30));
-    if (empty($specialty) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]+$/u', $_POST['specialty'])) {
-        $errors['specialty'] = 'Специальность врача обязательна к заполнению.';
-    }
-    if (!is_numeric($fee) || $fee <= 0) {
-        $errors['fee'] = 'Укажите корректную стоимость приема.';
-    }
-    if (!is_numeric($commission) || $commission < 0) {
-        $errors['commission'] = 'Укажите корректный процент отчисления.';
-    }*/
-
+   */ 
     $errors = FALSE;
     if (empty(trim($_POST['fullName'])) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fullName'])) {
         $errors = TRUE;
@@ -134,6 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     } catch (PDOException $e) {
         $errors['database'] = "Ошибка при добавлении врача: " . $e->getMessage();
     }
+    setcookie('save', '1');
 
     header("Location: form_doctors.php"); // Перенаправление обратно на форму
     exit;
