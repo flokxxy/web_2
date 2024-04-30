@@ -32,3 +32,14 @@
 </form>
 </body>
 </html>
+
+<?php
+if (!empty($message)) {
+    print('<div id="message">');
+// Выводим все сообщения.
+    foreach ($message as $m) {
+        print($m);
+    }
+    print('</div>');
+}
+?>
