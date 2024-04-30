@@ -10,16 +10,6 @@
 </head>
 <body>
 
-    <?php
-if (!empty($messages)) {
-    print('<div id="messages">');
-// Выводим все сообщения.
-foreach ($messages as $message) {
-print($message);
-}
-print('</div>');
-}
-?>
     
 <form action="form_doctors.php" method="post">
     <label for="fullName">ФИО врача:</label>
@@ -35,5 +25,18 @@ print('</div>');
 
     <button type="submit">Добавить врача</button>
 </form>
+
+    
+    <?php
+if (!empty($messages)) {
+    print('<div id="messages">');
+// Выводим все сообщения.
+foreach ($messages as $message) {
+print($message);
+}
+print('</div>');
+}
+?>
+    
 </body>
 </html>
