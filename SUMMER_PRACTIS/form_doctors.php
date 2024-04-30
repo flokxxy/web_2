@@ -85,26 +85,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors = FALSE;
         if (empty(trim($_POST['fullName'])) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fullName'])) {
             $errors = TRUE;
+            setcookie("fullName_errors", '1', time() + 3600);
             print('ФИО врача обязательно к заполнению.'."\n");
         }
         if(empty($_POST['specialty']) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]+$/u', $_POST['specialty'])){
             $errors = TRUE;
+            setcookie("specialty_errors", '1', time() + 3600);
             print('Специальность врача обязательна к заполнению.'."\n");
         }
         if(empty($_POST['fee']) || !preg_match('/^[0-9]+$/u', $_POST['fee'])){
             $errors = TRUE;
+            setcookie("fee_errors", '1', time() + 3600);
             print('Укажите корректную стоимость приема.'."\n");
         }
         if(empty($_POST['commission']) || !preg_match('/^[0-9]+$/u', $_POST['commission'])){
             $errors = TRUE;
+            setcookie("commission_errors", '1', time() + 3600);
             print('Укажите корректный процент отчисления.'."\n");
         }
 
         if ($errors || empty($fullName) || empty($specialty) || empty($fee) || empty($commission)) {
-            $_SESSION['form_errors'] = $errors;
             print('что-то не так');
-$message[] = 'что-то не так';
-            header("Location: doctors.php"); // Перенаправление обратно на форму
+            header("Location: form_doctors.php"); // Перенаправление обратно на форму
             exit;
         }
 
@@ -148,12 +150,8 @@ $message[] = 'что-то не так';
             $errors['database'] = "Ошибка при добавлении врача: " . $e->getMessage();
         }
 
-        if (!empty($errors)) {
-            $_SESSION['form_errors'] = $errors;
-
-            header("Location: doctors.php"); // Перенаправление обратно на форму
-            exit;
-        }
+        header("Location: form_doctors.php"); // Перенаправление обратно на форму
+        exit;
 
     }
 }
