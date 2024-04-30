@@ -17,17 +17,17 @@
     <input type="text" id="lastName" name="lastName" <?php if (isset($errors['lastName'])) {print 'class="error"';} ?>
            value="<?php if (isset($values['lastName'])) {print $values['lastName'];} ?>" />
     <label for="firstName">Имя:</label>
-    <input type="text" id="firstName" name="firstName"
-    <?php if($errors['firstName']) {print 'class="error"';}?> value="<?php print $values['firstName']; ?>" >
+    <input type="text" id="firstName" name="firstName" <?php if (isset($errors['firstName'])) {print 'class="error"';} ?>
+           value="<?php if (isset($values['firstName'])) {print $values['firstName'];} ?>" />
     <label for="middleName">Отчество:</label>
-    <input type="text" id="middleName" name="middleName"
-    <?php if($errors['middleName']) {print 'class="error"';}?> value="<?php print $values['middleName']; ?>" >
+    <input type="text" id="middleName" name="middleName" <?php if (isset($errors['middleName'])) {print 'class="error"';} ?>
+           value="<?php if (isset($values['middleName'])) {print $values['middleName'];} ?>" />
     <label for="birthDate">Дата рождения:</label>
-    <input type="date" id="birthDate" name="birthDate"
-    <?php if ($errors['birthDate']) {print 'class="error"';} ?> value="<?php print $values['birthDate']; ?>">
+    <input type="date" id="birthDate" name="birthDate" <?php if (isset($errors['birthDate'])) {print 'class="error"';} ?>
+           value="<?php if (isset($values['birthDate'])) {print $values['birthDate'];} ?>" />
     <label for="address">Адрес:</label>
-    <input type="text" id="address" name="address"
-    <?php if($errors['address']) {print 'class="error"';}?> value="<?php print $values['address']; ?>" >
+    <input type="text" id="address" name="address" <?php if (isset($errors['address'])) {print 'class="error"';} ?>
+           value="<?php if (isset($values['address'])) {print $values['address'];} ?>" />
     <button type="submit">Добавить пациента</button>
 </form>
 </body>
