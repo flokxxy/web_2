@@ -54,7 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     include('patients.php');
 } elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-
     $errors = FALSE;
     if (empty(trim($_POST['lastName'])) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['lastName'])) {
         $errors = TRUE;
@@ -133,7 +132,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     }
     setcookie('save', '1');
 
-    header("Location: form_patients.php"); // Перенаправление обратно на форму
+    echo 'exit';
+    //header("Location: form_patients.php"); // Перенаправление обратно на форму
     exit;
 
 }
