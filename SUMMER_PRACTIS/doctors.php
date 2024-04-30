@@ -9,6 +9,18 @@
     <title>task 5</title>
 </head>
 <body>
+
+    <?php
+if (!empty($messages)) {
+    print('<div id="messages">');
+// Выводим все сообщения.
+foreach ($messages as $message) {
+print($message);
+}
+print('</div>');
+}
+?>
+    
 <form action="form_doctors.php" method="post">
     <label for="fullName">ФИО врача:</label>
     <input type="text" name="fullName"
