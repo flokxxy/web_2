@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         print('Укажите корректный процент отчисления.'."\n");
     }else setcookie('commission_value', $_POST['commission'], time() + (86400 * 30));
 
-    if ($errors || empty($fullName) || empty($specialty) || empty($fee) || empty($commission)) {
+    if ($errors) {
         print('что-то не так');
         header("Location: form_doctors.php"); // Перенаправление обратно на форму
         exit;
@@ -109,9 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         echo "Врач успешно добавлен.";
         $lastId = $pdo->lastInsertId();
         echo "ID нового врача: $lastId";
-
-        // Очистка данных формы в сессии после успешного добавления
-        unset($_SESSION['form_input']);
+        
     } catch (PDOException $e) {
         $errors['database'] = "Ошибка при добавлении врача: " . $e->getMessage();
     }
