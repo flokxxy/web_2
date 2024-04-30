@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $values['firstName'] = empty($_COOKIE['firstName_value']) ? '' : $_COOKIE['firstName_value'];
     $values['middleName'] = empty($_COOKIE['middleName_value']) ? '' : $_COOKIE['middleName_value'];
     $values['birthDate'] = empty($_COOKIE['birthDate_value']) ? '' : $_COOKIE['birthDate_value'];
-    $values['address'] = empty($_COOKIE['address']) ? '' : $_COOKIE['address'];
+    $values['address'] = empty($_COOKIE['address_value']) ? '' : $_COOKIE['address_value'];
 
 
     include('patients.php');
