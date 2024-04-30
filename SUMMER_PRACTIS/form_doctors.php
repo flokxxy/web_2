@@ -1,5 +1,5 @@
 <?php
-
+header('Content-Type: text/html; charset=UTF-8');
 session_start(); // Начало сессии для хранения данных формы и сообщений об ошибках
 
 
@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }*/
 
         $errors = FALSE;
-        if (empty($_POST['fullNameRealtor']) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fullNameRealtor'])) {
+        if (empty(trim($_POST['fullNameRealtor'])) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fullNameRealtor'])) {
             $errors = TRUE;
             print('ФИО врача обязательно к заполнению.');
         }
