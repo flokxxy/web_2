@@ -89,12 +89,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         if(empty($_POST['specialty']||!preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]+$/u', $_POST['specialty']))){
             $errors = TRUE;
+            print('Специальность врача обязательна к заполнению.\n');
         }
         if(empty($_POST['fee']||!preg_match('/^[0-9]+$/u', $_POST['fee']))){
             $errors = TRUE;
+            print('Укажите корректную стоимость приема.');
         }
         if(empty($_POST['commission']||!preg_match('/^[0-9]+$/u', $_POST['commission']))){
             $errors = TRUE;
+            print('Укажите корректный процент отчисления.');
         }
 
         if ($errors === true) {
