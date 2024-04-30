@@ -1,4 +1,6 @@
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +14,14 @@
     }
 </style>
 <body>
+<?php
+print($errors['lastName'] . '<br>');
+print($errors['firstName'] . '<br>');
+print($errors['middleName'] .'<br>');
+print($errors['birthDate'] . '<br>');
+print($errors['address'] . '<br>');
+?>
+
 <form action="form_patients.php" method="post">
     <label for="lastName">Фамилия:</label>
     <input type="text" id="lastName" name="lastName" <?php if (isset($errors['lastName'])) {print 'class="error"';} ?>
