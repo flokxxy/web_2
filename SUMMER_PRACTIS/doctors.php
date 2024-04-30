@@ -6,20 +6,28 @@
     <meta charset="UTF-8">
     <title>task 5</title>
 </head>
+<style>
+    .error {
+        border: 2px solid red;
+    }
+</style>
 <body>
 
 
 <form action="form_doctors.php" method="post">
     <label for="fullName">ФИО врача:</label>
     <input type="text" name="fullName"
-           <?php if($errors['fullName']) {print 'class="error"';}?> value="<?php $values['fullName']; ?>" />
+    <?php if($errors['fullName']) {print 'class="error"';}?> value="<?php $values['fullName']; ?>" />
     <label for="specialty">Специальность:</label>
-    <input type="text" id="specialty" name="specialty" value="<?php echo isset($_COOKIE['value_specialty']) ? htmlspecialchars($_COOKIE['value_specialty']) : ''; ?>">
+    <input type="text" id="specialty" name="specialty" 
+    <?php if($errors['specialty']) {print 'class="error"';}?> value="<?php $values['specialty']; ?>"/>
     <label for="fee">Стоимость приема:</label>
-    <input type="number" id="fee" name="fee" value="<?php echo isset($_COOKIE['value_fee']) ? htmlspecialchars($_COOKIE['value_fee']) : ''; ?>" step="100">
+    <input type="number" id="fee" name="fee" 
+    <?php if($errors['fee']) {print 'class="error"';}?> value="<?php $values['fee']; ?>"/>
 
     <label for="commission">Процент отчисления:</label>
-    <input type="number" id="commission" name="commission" value="<?php echo isset($_COOKIE['value_commission']) ? htmlspecialchars($_COOKIE['value_commission']) : ''; ?>" step="1">
+    <input type="number" id="commission" name="commission"
+    <?php if($errors['commission']) {print 'class="error"';}?> value="<?php $values['commission']; ?> />
 
     <button type="submit">Добавить врача</button>
 </form>
