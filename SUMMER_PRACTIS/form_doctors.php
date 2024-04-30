@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($errors || empty($fullName) || empty($specialty) || empty($fee) || empty($commission)) {
             $_SESSION['form_errors'] = $errors;
             print('что-то не так');
-$message = 'что-то не так';
+$message[] = 'что-то не так';
             header("Location: doctors.php"); // Перенаправление обратно на форму
             exit;
         }
