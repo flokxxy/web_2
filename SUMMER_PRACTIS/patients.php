@@ -14,8 +14,9 @@
 <body>
 <form action="form_patients.php" method="post">
     <label for="lastName">Фамилия:</label>
-    <input type="text" id="lastName" name="lastName" class="error"
-    value="<?php echo $values['lastName']; ?>" >
+    <input type="text" id="lastName" name="lastName" <?php
+    if ($errors['lastName']) {print 'class="error"';} ?>
+    value="<?php print $values['lastName']; ?>" />
     <label for="firstName">Имя:</label>
     <input type="text" id="firstName" name="firstName"
     <?php if($errors['firstName']) {print 'class="error"';}?> value="<?php print $values['firstName']; ?>" >
