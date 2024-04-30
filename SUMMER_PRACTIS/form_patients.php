@@ -129,9 +129,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         echo "ID нового пациента: $lastId";
 
         // Очистка данных формы в сессии после успешного добавления
-       
+
     } catch (PDOException $e) {
         $errors['database'] = "Ошибка при добавлении врача: " . $e->getMessage();
+        echo "Ошибка при добавлении врача: " . $e->getMessage();
     }
     setcookie('save', '1');
 
