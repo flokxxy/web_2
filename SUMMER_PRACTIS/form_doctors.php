@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $values['fee'] = empty($_COOKIE['fee_value']) ? '' : $_COOKIE['fee_value'];
         $values['commission'] = empty($_COOKIE['commission_value']) ? '' : $_COOKIE['commission_value'];
 
-        include('form_doctors.php');
+        include('doctors.php');
         exit();
     } else {
 
