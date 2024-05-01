@@ -1,4 +1,9 @@
 <?php
+include('../impotent.php');
+$servername = "localhost";
+$username = username;
+$password = password;
+$dbname = username;
 // Подключение к базе данных
 $db = mysqli_connect('localhost', 'username', 'password', 'database_name');
 
@@ -7,7 +12,7 @@ $query = 'SELECT * FROM doctors';
 $result = mysqli_query($db, $query);
 
 // Вывод докторов в виде выпадающего списка
-echo '<form action="add_appointment.php" method="post">';
+echo '<form action="patients.php" method="post">';
 echo '<select name="doctor_id">';
 while ($row = mysqli_fetch_assoc($result)) {
     echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
