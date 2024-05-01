@@ -5,11 +5,11 @@ $username = username;
 $password = password;
 $dbname = username;
 // Подключение к базе данных
-$db = mysqli_connect('localhost', 'username', 'password', 'database_name');
-
+$pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 // SQL-запрос для получения всех докторов из первой таблицы
 $query = 'SELECT * FROM doctors';
-$result = mysqli_query($db, $query);
+$result = mysqli_query($pdo, $query);
 
 // Вывод докторов в виде выпадающего списка
 echo '<form action="patients.php" method="post">';
@@ -34,17 +34,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $room = $_POST['room'];
 
     $query = "INSERT INTO appointments (doctor_id, date, time, room) VALUES ($doctor_id, '$date', '$time', '$room')";
-    $result = mysqli_query($db, $query);
+    $result = mysqli_query($pdo, $query);
 
     if ($result) {
         echo 'Appointment added successfully.';
     } else {
-        echo 'Error adding appointment: ' . mysqli_error($db);
+        echo 'Error adding appointment: ' . mysqli_error($pdo);
     }
 }
 
 // Закрытие соединения с базой данных
-mysqli_close($db);
+mysqli_close($pdo);
 ?>
 
 
