@@ -22,8 +22,8 @@ $sql = "SELECT p.LastName AS patient_last_name, p.FirstName AS patient_first_nam
         INNER JOIN Doctors d ON a.DoctorID = d.DoctorID
         WHERE a.AppointmentID = ?";
 $stmt = $db->prepare($sql);
-$stmt->bind_param("i", $appointment_id);
-$stmt->execute();
+//$stmt->bind_param("i", $appointment_id);
+$stmt->execute([$appointment_id]);
 $result = $stmt->get_result();
 $appointment = $result->fetch_assoc();
 
