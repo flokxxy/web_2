@@ -152,30 +152,10 @@ try {
     $middleName = $_POST["middleName"];
     $birthDate = $_POST["birthDate"];
     $address = $_POST["address"];
-    $select_name = $_POST["select_name"];
+    $doctor_id = $_POST["doctor_id"];
     $date = $_POST["date"];
 
-    // Поиск ID врача по его фамилии и специальности
-    $sql = "SELECT DoctorID FROM Doctors WHERE FullName = ? AND Specialty = ?";
-    $stmt = $pdo->prepare($sql);
-   // $stmt->bind_param("ss", $fullName, $specialty);
-
-    // Разделение фамилии и специальности врача
-    $fullName = explode(" ", $select_name);
-    foreach ($fullName as $value) {
-        echo $value . "+1 <br>";
-    }
-    $specialty = explode("(", $select_name);
-    foreach ($specialty as $value) {
-        echo $value . "+2 <br>";
-    }
-    $specialty = explode(")", $specialty);
-    echo $specialty . "++ <br>";
-
-    $stmt->execute([$fullName, $specialty]);
-   // $result = $stmt->get_result();
-    $doctor_id = $stmt->fetch()["DoctorID"];
-
+    
     // Поиск ID пациента
     $sql = "SELECT PatientID FROM Patients WHERE LastName = ? AND FirstName = ? AND MiddleName = ?";
     $stmt = $pdo->prepare($sql);
