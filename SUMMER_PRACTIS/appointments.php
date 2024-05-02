@@ -67,7 +67,7 @@ print($errors['address'] . '<br>');
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            echo "<option value='" . $row["DoctorID"] . "'>" . $row["FullName"] .$row["Specialty"]. "</option>";
+            echo "<option value='" . $row["DoctorID"] . "'>" . $row["FullName"] . " ". $row["Specialty"]. "</option>";
         }
     } else {
         echo "<option>No data available</option>";
