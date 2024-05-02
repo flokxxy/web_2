@@ -75,9 +75,7 @@ print($errors['address'] . '<br>');
 
     $conn->close();
     ?>
-    <select id="doctorId" name="doctorId" required>
-        <!-- Опции загружаются из базы данных -->
-    </select>
+    
     <label for="date">Дата приема:</label>
     <input type="datetime-local" id="date" name="date" required>
 
