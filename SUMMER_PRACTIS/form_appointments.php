@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     if ($errors) {
         print('что-то не так');
-        header("Location: form_patients.php"); // Перенаправление обратно на форму
+        header("Location: form_appointments.php"); // Перенаправление обратно на форму
         exit;
     }
     else {
@@ -136,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     setcookie('save', '1');
 
     //echo 'exit';
-    header("Location: form_patients.php"); // Перенаправление обратно на форму
+    header("Location: form_appointments.php"); // Перенаправление обратно на форму
     exit;
 
 }
