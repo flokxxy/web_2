@@ -102,38 +102,100 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         setcookie('birthDate_errors', '', time() - 3600);
         setcookie('address_errors', '', time() - 3600);
     }
-
+//добавлекние пациента при записи на прием
     include('../impotent.php');
     $servername = "localhost";
     $username = username;
     $password = password;
     $dbname = username;
 
-    // echo 'try';
     try {
         $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $sql = "INSERT INTO Appointments (PatientID, DoctorID, Date) VALUES (:patientID, :doctorID, :date)";
+        //echo "selecting:,";
+        $sql = "INSERT INTO Patients (LastName,FirstName, MiddleName, BirthDate, Address) VALUES (:lastName, :firstName, :middleName, :birthDate, :address)";
         $stmt = $pdo->prepare($sql);
 
-        $stmt->bindParam(':patientID', $_POST['patientID']);
-        $stmt->bindParam(':doctorID', $_POST['doctorID']);
-        $stmt->bindParam(':date', $_POST['date']);
+        $stmt->bindParam(':lastName', $_POST['lastName']);
+        $stmt->bindParam(':firstName', $_POST['firstName']);
+        $stmt->bindParam(':middleName', $_POST['middleName']);
+        $stmt->bindParam(':birthDate', $_POST['birthDate']);
+        $stmt->bindParam(':address', $_POST['address']);
 
         $stmt->execute();
-        echo "Запись успешно добавлена.";
+        echo "Пациент успешно добавлен.";
         $lastId = $pdo->lastInsertId();
-        echo "ID новой записи: $lastId";
+        echo "ID нового пациента: $lastId";
+
 
     } catch (PDOException $e) {
-        $errors['database'] = "Ошибка при добавлении записи: " . $e->getMessage();
-        echo "Ошибка при добавлении записи: " . $e->getMessage();
+        $errors['database'] = "Ошибка при добавлении врача: " . $e->getMessage();
+        echo "Ошибка при добавлении врача: " . $e->getMessage();
+    }
+    setcookie('save', '1');
+
+    exit;
+
+
+ // запись на прием только что добавленного пациента
+
+
+// Подключение к базе данных
+
+
+
+
+// Проверка на отправку формы
+
+    // Получение данных из формы
+    $lastName = $_POST["lastName"];
+    $firstName = $_POST["firstName"];
+    $middleName = $_POST["middleName"];
+    $birthDate = $_POST["birthDate"];
+    $address = $_POST["address"];
+    $select_name = $_POST["select_name"];
+    $date = $_POST["date"];
+
+    // Поиск ID врача по его фамилии и специальности
+    $sql = "SELECT DoctorID FROM Doctors WHERE FullName = ? AND Specialty = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $fullName, $specialty);
+
+    // Разделение фамилии и специальности врача
+    $fullName = explode(" ", $select_name)[0];
+    $specialty = explode("(", $select_name)[1];
+    $specialty = explode(")", $specialty)[0];
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $doctor_id = $result->fetch_assoc()["DoctorID"];
+
+    // Поиск ID пациента
+    $sql = "SELECT PatientID FROM Patients WHERE LastName = ? AND FirstName = ? AND MiddleName = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sss", $lastName, $firstName, $middleName);
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $patient_id = $result->fetch_assoc()["PatientID"];
+
+    // Добавление записи в таблицу Appointments
+    $sql = "INSERT INTO Appointments (PatientID, DoctorID, Date) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("iis",$patient_id, $doctor_id, $date);
+
+    if ($stmt->execute()) {
+        echo "Запись на прием успешно добавлена.";
+    } else {
+        echo "Ошибка при добавлении записи на прием: " . $conn->error;
     }
 
-    setcookie('save', '1');
-    header("Location: form_appointments.php"); // Перенаправление обратно на форму
-    exit;
+    $stmt->close();
+}
+
+$conn->close();
+
+
 
 }
 ?>
