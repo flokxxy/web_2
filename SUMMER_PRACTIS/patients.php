@@ -41,6 +41,7 @@ print($errors['address'] . '<br>');
     <label for="address">Адрес:</label>
     <input type="text" id="address" name="address" <?php if (($errors['address'])) {print 'class="error"';} ?>
            value="<?php if (isset($values['address'])) {print $values['address'];} ?>" />
+    <button type="submit">Добавить пациента</button>
 </form>
 
 <br>
