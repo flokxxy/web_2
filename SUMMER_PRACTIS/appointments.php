@@ -87,6 +87,7 @@ print($errors['address'] . '<br>');
     <input type="number" id="paymentAmount" name="paymentAmount" required step="0.01">
     -->
     <button type="submit">Записать на прием</button>
+<a href="quintation.php"><button type="button">Сформировать квитанцию об оплате</button></a>
 
 </form>
 </body>
