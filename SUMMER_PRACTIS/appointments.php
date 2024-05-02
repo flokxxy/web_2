@@ -23,7 +23,7 @@ print($errors['address'] . '<br>');
 */
 ?>
 
-<form action="form_patients.php" method="post">
+<form action="form_appointments.php" method="post">
     <label for="lastName">Фамилия:</label>
     <input type="text" id="lastName" name="lastName" <?php if (($errors['lastName'])) {print 'class="error"';} ?>
            value="<?php if (isset($values['lastName'])) {print $values['lastName'];} ?>" />
@@ -39,11 +39,9 @@ print($errors['address'] . '<br>');
     <label for="address">Адрес:</label>
     <input type="text" id="address" name="address" <?php if (($errors['address'])) {print 'class="error"';} ?>
            value="<?php if (isset($values['address'])) {print $values['address'];} ?>" />
-</form>
 
 <br>
-
-<form action="form_appointments.php" method="post">
+    
        <!-- Опции загружаются из базы данных -->
     </select>
     <!--
