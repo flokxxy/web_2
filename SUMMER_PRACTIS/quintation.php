@@ -25,7 +25,7 @@ $stmt = $db->prepare($sql);
 //$stmt->bind_param("i", $appointment_id);
 $stmt->execute([$appointment_id]);
 //$result = $stmt->get_result();
-$appointment = $stmt->fetch_assoc();
+$appointment = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // Расчет стоимости приема с учетом подоходного налога
 $consultation_fee = $appointment['consultation_fee'];
