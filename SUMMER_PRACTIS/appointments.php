@@ -58,13 +58,13 @@ print($errors['address'] . '<br>');
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT Specialty, FullName FROM Doctors";
+    $sql = "SELECT DoctorID,Specialty, FullName FROM Doctors";
     $result = $conn->query($sql);
 
     echo "<select name='select_name'>";
 
     if ($result->num_rows > 0) {
-        while($row = $result->fetch()) {
+        while($row = $result->fetch_assoc()) {
             $id = $row["DoctorID"];
             $specialty = $row["Specialty"];
             $fullName = $row["FullName"];
