@@ -44,8 +44,6 @@ $html .= "<p>Комиссия врача: {$commission}%</p>";
 $html .= "<p>Сумма подоходного налога: {$tax_amount} руб.</p>";
 $html .= "<p>Итого к оплате: {$total_amount} руб.</p>";
 
-// Вывод квитанции
-echo $html;
 // Создание PDF из HTML и сохранение в файл
 require_once('vendor/autoload.php'); // Подключение TCPDF
 
