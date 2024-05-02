@@ -113,29 +113,25 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     try {
         $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        //echo "selecting:,";
-        $sql = "INSERT INTO Patients (LastName,FirstName, MiddleName, BirthDate, Address) VALUES (:lastName, :firstName, :middleName, :birthDate, :address)";
+
+        $sql = "INSERT INTO Appointments (PatientID, DoctorID, Date) VALUES (:patientID, :doctorID, :date)";
         $stmt = $pdo->prepare($sql);
 
-        $stmt->bindParam(':lastName', $_POST['lastName']);
-        $stmt->bindParam(':firstName', $_POST['firstName']);
-        $stmt->bindParam(':middleName', $_POST['middleName']);
-        $stmt->bindParam(':birthDate', $_POST['birthDate']);
-        $stmt->bindParam(':address', $_POST['address']);
+        $stmt->bindParam(':patientID', $_POST['patientID']);
+        $stmt->bindParam(':doctorID', $_POST['doctorID']);
+        $stmt->bindParam(':date', $_POST['date']);
 
         $stmt->execute();
-        echo "Пациент успешно добавлен.";
+        echo "Запись успешно добавлена.";
         $lastId = $pdo->lastInsertId();
-        echo "ID нового пациента: $lastId";
-
+        echo "ID новой записи: $lastId";
 
     } catch (PDOException $e) {
-        $errors['database'] = "Ошибка при добавлении врача: " . $e->getMessage();
-        echo "Ошибка при добавлении врача: " . $e->getMessage();
+        $errors['database'] = "Ошибка при добавлении записи: " . $e->getMessage();
+        echo "Ошибка при добавлении записи: " . $e->getMessage();
     }
-    setcookie('save', '1');
 
-    //echo 'exit';
+    setcookie('save', '1');
     header("Location: form_appointments.php"); // Перенаправление обратно на форму
     exit;
 
