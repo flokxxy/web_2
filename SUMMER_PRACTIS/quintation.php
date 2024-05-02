@@ -52,3 +52,29 @@ $html .= "<p>Итого к оплате: {$total_amount} руб.</p>";
 // Вывод квитанции
 echo $html;
 ?>
+
+<button id="generatePdfButton">Создать PDF</button>
+
+<script>
+    document.getElementById('generatePdfButton').addEventListener('click', function() {
+        // Отправка запроса на сервер для создания PDF
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'generate_pdf.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.responseType = 'blob'; // Ожидание ответа в виде файла
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                // Создание ссылки для скачивания PDF
+                var blob = new Blob([xhr.response], { type: 'application/pdf' });
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'appointment_receipt.pdf';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+            }
+        };
+        xhr.send('html=' + encodeURIComponent(document.documentElement.outerHTML)); // Отправка HTML-кода на сервер
+    });
+</script>
