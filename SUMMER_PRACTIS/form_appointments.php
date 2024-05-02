@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         setcookie('address_errors', '', time() - 3600);
     }
 
-    
+
 //добавлекние пациента при записи на прием
 
     include('../impotent.php');
@@ -157,37 +157,35 @@ try {
 
     // Поиск ID врача по его фамилии и специальности
     $sql = "SELECT DoctorID FROM Doctors WHERE FullName = ? AND Specialty = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $fullName, $specialty);
+    $stmt = $pdo->prepare($sql);
+   // $stmt->bind_param("ss", $fullName, $specialty);
 
     // Разделение фамилии и специальности врача
     $fullName = explode(" ", $select_name)[0];
     $specialty = explode("(", $select_name)[1];
     $specialty = explode(")", $specialty)[0];
 
-    $stmt->execute();
+    $stmt->execute([$fullName, $specialty]);
     $result = $stmt->get_result();
     $doctor_id = $result->fetch_assoc()["DoctorID"];
 
     // Поиск ID пациента
     $sql = "SELECT PatientID FROM Patients WHERE LastName = ? AND FirstName = ? AND MiddleName = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $lastName, $firstName, $middleName);
+    $stmt = $pdo->prepare($sql);
+    //$stmt->bind_param("sss", $lastName, $firstName, $middleName);
 
-    $stmt->execute();
+    $stmt->execute([$lastName, $firstName, $middleName]);
     $result = $stmt->get_result();
     $patient_id = $result->fetch_assoc()["PatientID"];
 
     // Добавление записи в таблицу Appointments
     $sql = "INSERT INTO Appointments (PatientID, DoctorID, Date) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("iis", $patient_id, $doctor_id, $date);
+    $stmt = $pdo->prepare($sql);
+    //$stmt->bind_param("iis", $patient_id, $doctor_id, $date);
 
-    if ($stmt->execute()) {
+    $stmt->execute([$patient_id, $doctor_id, $date]);
         echo "Запись на прием успешно добавлена.";
-    } else {
-        echo "Ошибка при добавлении записи на прием: " . $conn->error;
-    }
+
 
     $stmt->close();
     }
@@ -197,7 +195,7 @@ try {
     }
   //  setcookie('save', '1');
 
-$conn->close();
+$pdo->close();
 
 }
 exit;
