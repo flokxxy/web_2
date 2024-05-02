@@ -166,8 +166,8 @@ try {
     $specialty = explode(")", $specialty)[0];
 
     $stmt->execute([$fullName, $specialty]);
-    $result = $stmt->get_result();
-    $doctor_id = $result->fetch_assoc()["DoctorID"];
+   // $result = $stmt->get_result();
+    $doctor_id = $stmt->fetch_assoc()["DoctorID"];
 
     // Поиск ID пациента
     $sql = "SELECT PatientID FROM Patients WHERE LastName = ? AND FirstName = ? AND MiddleName = ?";
@@ -175,8 +175,8 @@ try {
     //$stmt->bind_param("sss", $lastName, $firstName, $middleName);
 
     $stmt->execute([$lastName, $firstName, $middleName]);
-    $result = $stmt->get_result();
-    $patient_id = $result->fetch_assoc()["PatientID"];
+   // $result = $stmt->get_result();
+    $patient_id = $stmt->fetch_assoc()["PatientID"];
 
     // Добавление записи в таблицу Appointments
     $sql = "INSERT INTO Appointments (PatientID, DoctorID, Date) VALUES (?, ?, ?)";
