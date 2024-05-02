@@ -41,9 +41,7 @@ print($errors['address'] . '<br>');
            value="<?php if (isset($values['address'])) {print $values['address'];} ?>" />
 
 <br>
-
        <!-- Опции загружаются из базы данных -->
-    </select>
     <!--
     <label for="doctorId" >Выберите врача:</label>
     -->
