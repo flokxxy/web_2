@@ -52,27 +52,3 @@ $html .= "<p>Итого к оплате: {$total_amount} руб.</p>";
 // Вывод квитанции
 echo $html;
 ?>
-<?php
-require_once('vendor/autoload.php'); // Подключение TCPDF
-
-// Создание нового PDF документа
-$pdf = new TCPDF();
-
-// Установка метаданных документа
-$pdf->SetCreator('Your Name');
-$pdf->SetAuthor('Your Name');
-$pdf->SetTitle('Appointment Receipt');
-$pdf->SetSubject('Appointment Receipt');
-$pdf->SetKeywords('Appointment, Receipt, PDF');
-
-// Установка шрифтов
-$pdf->SetFont('dejavusans', '', 12);
-
-// Добавление новой страницы
-$pdf->AddPage();
-
-// Запись HTML-кода в PDF
-$pdf->writeHTML($html, true, false, true, false, '');
-
-// Вывод PDF в браузер или сохранение в файл
-$pdf->Output('appointment_receipt.pdf', 'D');
