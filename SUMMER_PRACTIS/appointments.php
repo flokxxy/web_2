@@ -61,7 +61,7 @@ print($errors['address'] . '<br>');
     $sql = "SELECT DoctorID,Specialty, FullName FROM Doctors";
     $result = $conn->query($sql);
 
-    echo "<select name='select_name'>";
+    echo "<select name='doctor_id'>";
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
