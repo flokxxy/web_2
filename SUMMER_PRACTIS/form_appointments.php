@@ -191,11 +191,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     }
 
     $stmt->close();
-}
+
 
 $conn->close();
-
-
 
 }
 ?>
