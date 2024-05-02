@@ -65,7 +65,10 @@ print($errors['address'] . '<br>');
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            echo "<option value='" . $row["DoctorID"] . "'>" . $row["FullName"] . " (". $row["Specialty"]. ")"."</option>";
+            $id = $row["DoctorID"];
+            $specialty = $row["Specialty"];
+            $fullName = $row["FullName"];
+            echo "<option value='$id'>$fullName ($specialty)</option>";
         }
     } else {
         echo "<option>No data available</option>";
@@ -75,9 +78,9 @@ print($errors['address'] . '<br>');
 
     $conn->close();
     ?>
-    
+
     <label for="date">Дата приема:</label>
-    <input type="datetime-local" id="date" name="date" required>
+    <input type="datetime-local" id="date" name="date" >
 
     <!-- это должно выводиться в квитанции
     <label for="paymentAmount">Сумма оплаты:</label>
