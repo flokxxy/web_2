@@ -24,8 +24,8 @@ $sql = "SELECT p.LastName AS patient_last_name, p.FirstName AS patient_first_nam
 $stmt = $db->prepare($sql);
 //$stmt->bind_param("i", $appointment_id);
 $stmt->execute([$appointment_id]);
-$result = $stmt->get_result();
-$appointment = $result->fetch_assoc();
+//$result = $stmt->get_result();
+$appointment = $stmt->fetch_assoc();
 
 // Расчет стоимости приема с учетом подоходного налога
 $consultation_fee = $appointment['consultation_fee'];
