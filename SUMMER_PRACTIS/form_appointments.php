@@ -102,7 +102,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         setcookie('birthDate_errors', '', time() - 3600);
         setcookie('address_errors', '', time() - 3600);
     }
+
+    
 //добавлекние пациента при записи на прием
+
     include('../impotent.php');
     $servername = "localhost";
     $username = username;
@@ -134,19 +137,15 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     }
     setcookie('save', '1');
 
-    exit;
+
 
 
  // запись на прием только что добавленного пациента
 
 
-// Подключение к базе данных
-
-
-
 
 // Проверка на отправку формы
-
+try {
     // Получение данных из формы
     $lastName = $_POST["lastName"];
     $firstName = $_POST["firstName"];
@@ -182,7 +181,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     // Добавление записи в таблицу Appointments
     $sql = "INSERT INTO Appointments (PatientID, DoctorID, Date) VALUES (?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("iis",$patient_id, $doctor_id, $date);
+    $stmt->bind_param("iis", $patient_id, $doctor_id, $date);
 
     if ($stmt->execute()) {
         echo "Запись на прием успешно добавлена.";
@@ -191,9 +190,15 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     }
 
     $stmt->close();
-
+    }
+    catch (PDOException $e) {
+        $errors['database'] = "Ошибка при добавлении: " . $e->getMessage();
+        echo "Ошибка при добавлении: " . $e->getMessage();
+    }
+  //  setcookie('save', '1');
 
 $conn->close();
 
 }
+exit;
 ?>
