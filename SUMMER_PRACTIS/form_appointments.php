@@ -128,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $stmt->execute();
         echo "Пациент успешно добавлен.";
         $lastId = $pdo->lastInsertId();
-        echo "ID нового пациента: $lastId";
+        echo "ID нового пациента: $lastId <br>";
 
 
     } catch (PDOException $e) {
@@ -161,11 +161,11 @@ try {
    // $stmt->bind_param("ss", $fullName, $specialty);
 
     // Разделение фамилии и специальности врача
-    $fullName = explode(" ", $select_name)[0];
+    $fullName = explode(" ", $select_name);
     echo $fullName . "++ <br>";
-    $specialty = explode("(", $select_name)[1];
+    $specialty = explode("(", $select_name);
     echo $specialty . "++ <br>";
-    $specialty = explode(")", $specialty)[0];
+    $specialty = explode(")", $specialty);
     echo $specialty . "++ <br>";
 
     $stmt->execute([$fullName, $specialty]);
