@@ -46,7 +46,39 @@ print($errors['address'] . '<br>');
 <form action="form_appointments.php" method="post">
        <!-- Опции загружаются из базы данных -->
     </select>
-    <label for="doctorId">Выберите врача:</label>
+    <!--
+    <label for="doctorId" >Выберите врача:</label>
+    -->
+    <?php
+    include('../impotent.php');
+    $servername = "localhost";
+    $username = username;
+    $password = password;
+    $dbname = username;
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT DoctorID, FullName FROM Doctors";
+    $result = $conn->query($sql);
+
+    echo "<select name='select_name'>";
+
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            echo "<option value='" . $row["DoctorID"] . "'>" . $row["FullName"] . "</option>";
+        }
+    } else {
+        echo "<option>No data available</option>";
+    }
+
+    echo "</select>";
+
+    $conn->close();
+    ?>
     <select id="doctorId" name="doctorId" required>
         <!-- Опции загружаются из базы данных -->
     </select>
@@ -62,4 +94,7 @@ print($errors['address'] . '<br>');
 </form>
 </body>
 </html>
+
+
+
 
