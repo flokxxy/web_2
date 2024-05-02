@@ -162,12 +162,15 @@ try {
 
     // Разделение фамилии и специальности врача
     $fullName = explode(" ", $select_name)[0];
+    echo $fullName . "++ <br>";
     $specialty = explode("(", $select_name)[1];
+    echo $specialty . "++ <br>";
     $specialty = explode(")", $specialty)[0];
+    echo $specialty . "++ <br>";
 
     $stmt->execute([$fullName, $specialty]);
    // $result = $stmt->get_result();
-    $doctor_id = $stmt->fetch_assoc()["DoctorID"];
+    $doctor_id = $stmt->fetch()["DoctorID"];
 
     // Поиск ID пациента
     $sql = "SELECT PatientID FROM Patients WHERE LastName = ? AND FirstName = ? AND MiddleName = ?";
@@ -176,7 +179,7 @@ try {
 
     $stmt->execute([$lastName, $firstName, $middleName]);
    // $result = $stmt->get_result();
-    $patient_id = $stmt->fetch_assoc()["PatientID"];
+    $patient_id = $stmt->fetch()["PatientID"];
 
     // Добавление записи в таблицу Appointments
     $sql = "INSERT INTO Appointments (PatientID, DoctorID, Date) VALUES (?, ?, ?)";
@@ -198,5 +201,5 @@ try {
 $pdo->close();
 
 }
-exit;
+//exit;
 ?>
