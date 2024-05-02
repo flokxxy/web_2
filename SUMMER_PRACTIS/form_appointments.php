@@ -162,9 +162,13 @@ try {
 
     // Разделение фамилии и специальности врача
     $fullName = explode(" ", $select_name);
-    echo $fullName . "++ <br>";
+    foreach ($fullName as $value) {
+        echo $value . "+1 <br>";
+    }
     $specialty = explode("(", $select_name);
-    echo $specialty . "++ <br>";
+    foreach ($specialty as $value) {
+        echo $value . "+2 <br>";
+    }
     $specialty = explode(")", $specialty);
     echo $specialty . "++ <br>";
 
