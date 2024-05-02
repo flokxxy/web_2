@@ -155,7 +155,7 @@ try {
     $doctor_id = $_POST["doctor_id"];
     $date = $_POST["date"];
 
-    
+
     // Поиск ID пациента
     $sql = "SELECT PatientID FROM Patients WHERE LastName = ? AND FirstName = ? AND MiddleName = ?";
     $stmt = $pdo->prepare($sql);
@@ -172,18 +172,16 @@ try {
 
     $stmt->execute([$patient_id, $doctor_id, $date]);
         echo "Запись на прием успешно добавлена.";
-
-
-    $stmt->close();
     }
     catch (PDOException $e) {
         $errors['database'] = "Ошибка при добавлении: " . $e->getMessage();
         echo "Ошибка при добавлении: " . $e->getMessage();
     }
-  //  setcookie('save', '1');
+  //setcookie('save', '1');
 
-$pdo->close();
+
 
 }
-//exit;
+exit;
 ?>
+
