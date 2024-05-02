@@ -41,7 +41,7 @@ print($errors['address'] . '<br>');
            value="<?php if (isset($values['address'])) {print $values['address'];} ?>" />
 
 <br>
-    
+
        <!-- Опции загружаются из базы данных -->
     </select>
     <!--
@@ -60,7 +60,7 @@ print($errors['address'] . '<br>');
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT DoctorID, FullName FROM Doctors";
+    $sql = "SELECT Specialty, FullName FROM Doctors";
     $result = $conn->query($sql);
 
     echo "<select name='select_name'>";
