@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Платный прием в поликлинике</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -28,14 +33,69 @@
         .button:hover {
             background-color: #0056b3;
         }
+
+        header {
+            background-color: rgba(58, 24, 5, 0.89);
+            color:white;
+        }
+
+        footer {
+            background-color: rgba(236, 197, 204, 0.8);
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: #0f0f0f;
+            transition: 0.25s ease;
+        }
+
+        .nav-item:hover {
+            color: white;
+            transition: 0.25s ease;
+        }
+
+        .block {
+            background: #a4bebe;
+            width:100%;
+        }
     </style>
+
 </head>
+
 <body>
+<header class="bg-primary text-white p-3">
+    <h1 class="text-center">Заголовок сайта</h1>
+</header>
+
 <div>
     <a href="form_doctors.php" class="button">Добавить врача</a>
     <a href="form_patients.php" class="button"> Добавить пациента</a>
     <a href="form_appointments.php" class="button"> Записаться на прием</a>
-
 </div>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4 text-center">
+            <button class="btn btn-success mb-2">Кнопка 1</button><br>
+            <button class="btn btn-danger mb-2">Кнопка 2</button><br>
+            <button class="btn btn-warning mb-2">Кнопка 3</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<footer class="bg-dark text-white mt-5 p-3">
+    <p class="text-center mb-0">Футер сайта</p>
+</footer>
+
+<!-- Подключение Bootstrap JavaScript и Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
