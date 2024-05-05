@@ -137,6 +137,60 @@ footer {
     display: inline-block; /* Отображать как блочный элемент */
     font-size: 16px; /* Размер шрифта */
 }
+.navbar {
+    margin-top: 1rem;
+    padding: .75rem 0 0;
+    border-top: 1px solid var(--fill-gray);
+    position: relative;
+    flex-wrap: nowrap;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+.navbar__wrap {
+    width: 100%;
+}
+.nav-items {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+.nav-item__link {
+    text-decoration: none; /* Убрать подчеркивание у ссылок */
+    color: #FAF1CF; /* Цвет текста по умолчанию */
+    transition: color 0.3s; /* Плавное изменение цвета при наведении */
+}
+
+.nav-item__link:hover {
+    color: #3F6844; /* Изменение цвета при наведении */
+}
+nav ul {
+    list-style: none;
+}
+ol, ul {
+    margin: 0;
+}
+ul {
+    list-style: disc;
+}
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    unicode-bidi: isolate;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+
 
 
 
