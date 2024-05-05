@@ -66,6 +66,7 @@ footer {
     display: flex;
     flex-direction: row;
     margin:5px;
+    justify-content: space-between;
 }
 .location__city-icon:hover svg {
     fill: white;
@@ -82,15 +83,14 @@ footer {
     100% { transform: translateX(-100%); }
 }
 
-.marquee-container:nth-child(2) {
+.marquee-container {
     flex: 2; /* Равномерное распределение пространства между блоками */
-    max-width: 600px; /* Максимальная ширина блока */
     transition: all 0.3s ease;
     border: 1px solid #152573;
     border-radius: 15px;
     padding: 10px;
     margin: 10px;
-    width: 350px;
+    width: auto;
    height: 25px;
    overflow: hidden;
    /* position: relative;*/
@@ -106,6 +106,9 @@ footer {
     font-size: 16px;
     color: blue;
     line-height: 0.15;
+}
+.top-header-end{
+
 }
 
 
