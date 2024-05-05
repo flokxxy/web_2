@@ -17,7 +17,7 @@
         display: flex;
         flex-direction: row;
         margin:5px;
-        justify-content: space-around;
+        justify-content: space-evenly;
         align-items: center;
     }
 </style>
@@ -96,7 +96,7 @@ print($errors['address'] . '<br>');
 
     $conn->close();
     ?>
-    </div>
+    
 
     <label for="date">Дата приема:</label>
     <input type="datetime-local" class="form-control" id="date" name="date" >
@@ -108,11 +108,11 @@ print($errors['address'] . '<br>');
          <button type="button" class="btnn">Сформировать квитанцию об оплате</button>
      </a>
  </div>
-
-
-
-</form>
 </div>
+
+
+
+
 </body>
 </html>
 
