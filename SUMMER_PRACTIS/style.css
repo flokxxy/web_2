@@ -1,12 +1,12 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Manrope, sans-serif;
     height: 100vh;
-    background-color: #f4f4f4;
+    background-color: #FAF1CF;
     margin: 0;
 }
 .button {
     background-color: #007BFF;
-    color: white;
+    color: #FAF1CF;
     border: none;
     padding: 10px 20px;
     margin: 10px;
@@ -16,12 +16,12 @@ body {
     transition: background-color 0.3s;
 }
 .button:hover {
-    background-color: #0056b3;
+    background-color: #4A2C40;
 }
 
 header {
-    background-color: rgba(58, 24, 5, 0.89);
-    color:white;
+    background-color: #4A2C40;
+    color:#FAF1CF;
 }
 
 footer {
@@ -40,12 +40,12 @@ footer {
 }
 
 .nav-item:hover {
-    color: white;
+    color: #FAF1CF;
     transition: 0.25s ease;
 }
 
 .block {
-    background: #a4bebe;
+    background:#FAF1CF;
     width:100%;
 }
 
@@ -58,10 +58,10 @@ footer {
 .top-header {
     display: flex;
     flex-direction: row;
-    background-color:#282D88;
+    background-color:#5DAA68;
     justify-content: space-around;
     z-index: 999991;
-    color: white;
+    color: #FAF1CF;
 
 }
 .top-header__wrap{
@@ -71,7 +71,7 @@ footer {
     justify-content: space-between;
 }
 .location__city-icon:hover svg {
-    fill: white;
+    fill: #FAF1CF;
 }
 .location{
     margin:auto;
@@ -88,7 +88,7 @@ footer {
 .marquee-container {
     flex: 2; /* Равномерное распределение пространства между блоками */
     transition: all 0.3s ease;
-    border: 1px solid #152573;
+    border: 1px solid #5DAA68;
     border-radius: 15px;
     padding: 10px;
     margin: 10px;
@@ -96,7 +96,7 @@ footer {
    height: 25px;
    overflow: hidden;
    /* position: relative;*/
-    background: #fff; /* Фон контейнера */
+    background: #Fff; /* Фон контейнера */
     box-sizing: border-box;
 }
 
@@ -106,7 +106,7 @@ footer {
     display: block;
     animation: marquee 20s linear infinite; /* Время анимации и повтор */
     font-size: 16px;
-    color: blue;
+    color:#4A2C40;
     line-height: 0.15;
 }
 .top-header-end{
@@ -120,7 +120,22 @@ footer {
     flex-direction: row;
     margin:5px;
     justify-content: space-between;
+    align-items: center;
+}
 
+.tel{
+    justify-content: center;
+}
+.btnn {
+    background-color: #3F6844; /* Цвет фона */
+    border: 1px solid #3F6844;
+    border-radius: 20px;
+    color: #FAF1CF; /* Цвет текста */
+    padding: 15px 32px; /* Отступы внутри кнопки */
+    text-align: center; /* Выравнивание текста по центру */
+    text-decoration: none; /* Убрать подчеркивание ссылки */
+    display: inline-block; /* Отображать как блочный элемент */
+    font-size: 16px; /* Размер шрифта */
 }
 
 
@@ -163,6 +178,11 @@ footer {
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
+}
+
+
+
+footer{background-color: #4A2C40;
 }
 
 
