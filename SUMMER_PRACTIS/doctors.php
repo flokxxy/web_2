@@ -41,7 +41,7 @@
         <input type="number"  class="form-control" id="commission" name="commission" <?php if (isset($errors['commission'])) {print 'class="error"';} ?>
         value="<?php if (isset($values['commission'])) {print $values['commission'];} ?>" />
     </div>
-    <button type="submit" class="btn btn-primary">Добавить врача</button>
+    <button type="submit" class="btn ">Добавить врача</button>
 </form>
 </div>
 
