@@ -17,7 +17,7 @@
         display: flex;
         flex-direction: row;
         margin:5px;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
     }
 </style>
