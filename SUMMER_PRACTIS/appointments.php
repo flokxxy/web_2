@@ -13,6 +13,13 @@
     .error {
         border: 2px solid red;
     }
+    .buttons{
+        display: flex;
+        flex-direction: row;
+        margin:5px;
+        justify-content: space-between;
+        align-items: center;
+    }
 </style>
 <body>
 
@@ -94,12 +101,14 @@ print($errors['address'] . '<br>');
     <label for="date">Дата приема:</label>
     <input type="datetime-local" class="form-control" id="date" name="date" >
     </div>
-    
-    <button type="submit"  class="btnn">Записать на прием</button>
-<br>
-    <a href="quintation.php">
-        <button type="button" class="btnn">Сформировать квитанцию об оплате</button>
-    </a>
+ <div class="buttons">
+     <button type="submit"  class="btnn">Записать на прием</button>
+     <br>
+     <a href="quintation.php">
+         <button type="button" class="btnn">Сформировать квитанцию об оплате</button>
+     </a>
+ </div>
+
 
 
 </form>
