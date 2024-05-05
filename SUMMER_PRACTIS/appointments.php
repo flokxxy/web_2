@@ -53,10 +53,7 @@ print($errors['address'] . '<br>');
            value="<?php if (isset($values['address'])) {print $values['address'];} ?>" />
     </div>
 <br>
-       <!-- Опции загружаются из базы данных -->
-    <!--
-    <label for="doctorId" >Выберите врача:</label>
-    -->
+
     <div class="form-group">
     <?php
     include('../impotent.php');
@@ -91,6 +88,7 @@ print($errors['address'] . '<br>');
 
     $conn->close();
     ?>
+    </div>
 
     <label for="date">Дата приема:</label>
     <input type="datetime-local" class="form-control" id="date" name="date" >
@@ -100,8 +98,10 @@ print($errors['address'] . '<br>');
     <input type="number" id="paymentAmount" name="paymentAmount" required step="0.01">
     -->
     <button type="submit"  class="btnn">Записать на прием</button>
-    <a href="quintation.php"><button type="button">Сформировать квитанцию об оплате</button></a>
-    <button id="generatePdfButton"  class="btnn">Создать PDF</button>
+    <a href="quintation.php">
+        <button type="button" class="form-control">Сформировать квитанцию об оплате</button>
+    </a>
+
 
 </form>
 </div>
