@@ -52,6 +52,7 @@ footer {
 
 .header__sub-wrap{
     height: 70px;
+    line-height: 4;
 }
 
 
@@ -139,7 +140,7 @@ footer {
 }
 .navbar {
     margin-top: 1rem;
-    padding: .75rem 0 0;
+    padding: .75rem 0 ;
     border-top: 1px solid var(--fill-gray);
     position: relative;
     flex-wrap: nowrap;
@@ -152,10 +153,10 @@ footer {
 }
 .nav-items {
     list-style: none;
-    padding: 0;
     display: flex;
     justify-content:space-between;
     align-items: center;
+    padding: 0 40px;
 }
 .nav-item__link {
     text-decoration: none; /* Убрать подчеркивание у ссылок */
@@ -188,6 +189,9 @@ ul {
 
 *, ::after, ::before {
     box-sizing: border-box;
+}
+.header__wrap{
+    border-bottom: 0.2px solid  #FAF1CF; /* Полоска снизу */
 }
 
 
@@ -236,7 +240,9 @@ ul {
 
 
 
-footer{background-color: #4A2C40;
+footer{
+    background-color: #4A2C40;
+    color:#FAF1CF;
 }
 
 
