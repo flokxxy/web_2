@@ -55,6 +55,7 @@ print($errors['address'] . '<br>');
 <br>
 
     <div class="form-group">
+        <label for="specialty">Выбрать врача:</label>
     <?php
     include('../impotent.php');
     $servername = "localhost";
@@ -71,7 +72,8 @@ print($errors['address'] . '<br>');
     $sql = "SELECT DoctorID,Specialty, FullName FROM Doctors";
     $result = $conn->query($sql);
 
-    echo "<select name='doctor_id'>";
+    echo "<select name='doctor_id'  >";
+    echo "<select class="form-control"  >";
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
