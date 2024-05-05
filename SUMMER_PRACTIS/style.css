@@ -50,7 +50,9 @@ footer {
 }
 
 
-
+.header__sub-wrap{
+    height: 70px;
+}
 
 
 .top-header {
