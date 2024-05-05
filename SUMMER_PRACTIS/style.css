@@ -1,0 +1,124 @@
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+.button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+.button:hover {
+    background-color: #0056b3;
+}
+
+header {
+    background-color: rgba(58, 24, 5, 0.89);
+    color:white;
+}
+
+footer {
+    background-color: rgba(236, 197, 204, 0.8);
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: #0f0f0f;
+    transition: 0.25s ease;
+}
+
+.nav-item:hover {
+    color: white;
+    transition: 0.25s ease;
+}
+
+.block {
+    background: #a4bebe;
+    width:100%;
+}
+
+.top-header {
+    display: flex;
+    flex-direction: row;
+   background-color:#282D88;
+    z-index: 999991;
+    color: white;
+}
+.location__city-icon:hover svg {
+    fill: white;
+}
+
+.container, .new-container {
+    max-width: 1100px;
+    padding: 0;
+    margin: 0 auto;
+}
+@media (min-width: 1300px) {
+    .container {
+        max-width: 1240px;
+    }
+}
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+.marquee-container {
+    border: 1px solid #000;
+    border-radius: 15px;
+    padding: 10px;
+    width: 300px;
+    overflow: hidden;
+    position: relative;
+    background: #fff; /* Фон контейнера */
+    box-sizing: border-box;
+}
+
+.marquee-content {
+   // position: absolute;
+    white-space: nowrap; /* Текст в одну строку */
+    display: block;
+    animation: marquee 10s linear infinite; /* Время анимации и повтор */
+    font-size: 16px;
+    color: blue;
+}
