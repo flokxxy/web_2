@@ -108,6 +108,8 @@ footer {
     line-height: 0.15;
 }
 .top-header-end{
+    position:relative;
+    line-height: 2.4;
 
 }
 
