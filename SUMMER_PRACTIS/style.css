@@ -75,7 +75,7 @@ footer {
     margin:auto;
     flex: 1; /* Равномерное распределение пространства между блоками */
     max-width: 100px; /* Максимальная ширина блока */
-    transition: all 0.3s ease;
+    transition: all 0.9s ease;
 }
 
 @keyframes marquee {
@@ -102,7 +102,7 @@ footer {
   position:relative;
     white-space: nowrap; /* Текст в одну строку */
     display: block;
-    animation: marquee 10s linear infinite; /* Время анимации и повтор */
+    animation: marquee 20s linear infinite; /* Время анимации и повтор */
     font-size: 16px;
     color: blue;
     line-height: 0.15;
@@ -110,6 +110,14 @@ footer {
 .top-header-end{
     position:relative;
     line-height: 2.4;
+
+}
+
+.container-header{
+    display: flex;
+    flex-direction: row;
+    margin:5px;
+    justify-content: space-between;
 
 }
 
@@ -154,3 +162,6 @@ footer {
     margin-right: auto;
     margin-left: auto;
 }
+
+
+
