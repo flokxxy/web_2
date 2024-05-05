@@ -33,3 +33,14 @@ body {
 select[multiple] {
     height: auto;
 }
+.btnn {
+    background-color: #3F6844; /* Цвет фона */
+    border: 1px solid #3F6844;
+    border-radius: 20px;
+    color: #FAF1CF; /* Цвет текста */
+    padding: 15px 20px; /* Отступы внутри кнопки */
+    text-align: center; /* Выравнивание текста по центру */
+    text-decoration: none; /* Убрать подчеркивание ссылки */
+    display: inline-block; /* Отображать как блочный элемент */
+    font-size: 16px; /* Размер шрифта */
+}
