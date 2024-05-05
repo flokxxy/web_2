@@ -73,7 +73,7 @@ print($errors['address'] . '<br>');
     $result = $conn->query($sql);
 
     echo "<select name='doctor_id'  >";
-    echo "<select class="form-control"  >";
+    
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
