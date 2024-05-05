@@ -95,10 +95,7 @@ print($errors['address'] . '<br>');
     <label for="date">Дата приема:</label>
     <input type="datetime-local" class="form-control" id="date" name="date" >
     </div>
-    <!-- это должно выводиться в квитанции
-    <label for="paymentAmount">Сумма оплаты:</label>
-    <input type="number" id="paymentAmount" name="paymentAmount" required step="0.01">
-    -->
+    <br>
     <button type="submit"  class="btnn">Записать на прием</button>
     <a href="quintation.php">
         <button type="button" class="btnn">Сформировать квитанцию об оплате</button>
