@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style_doctors.css" >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Добавление врача</title>
 </head>
 <body>
@@ -13,7 +14,7 @@
 <form action="form_doctors.php" method="post">
     <div class="form-group">
         <label for="fullName">ФИО врача:</label>
-        <input type="text" name="fullName" <?php if (isset($errors['fullName'])) {print 'class="error"';} ?>
+        <input type="text" class="form-control"  name="fullName" <?php if (isset($errors['fullName'])) {print 'class="error"';} ?>
         value="<?php if (isset($values['fullName'])) {print $values['fullName'];} ?>" />
     </div>
     <div class="form-group">
@@ -32,12 +33,12 @@
     </div>
     <div class="form-group">
         <label for="fee">Стоимость приема:</label>
-        <input type="number" id="fee" name="fee" <?php if (isset($errors['fee'])) {print 'class="error"';} ?>
+        <input type="number"  class="form-control"  id="fee" name="fee" <?php if (isset($errors['fee'])) {print 'class="error"';} ?>
         value="<?php if (isset($values['fee'])) {print $values['fee'];} ?>" />
     </div>
     <div class="form-group">
         <label for="commission">Процент отчисления:</label>
-        <input type="number" id="commission" name="commission" <?php if (isset($errors['commission'])) {print 'class="error"';} ?>
+        <input type="number"  class="form-control" id="commission" name="commission" <?php if (isset($errors['commission'])) {print 'class="error"';} ?>
         value="<?php if (isset($values['commission'])) {print $values['commission'];} ?>" />
     </div>
     <button type="submit" class="btn btn-primary">Добавить врача</button>
@@ -57,5 +58,8 @@ print('</div>');
 }
 ?>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
