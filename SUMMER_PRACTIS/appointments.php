@@ -52,7 +52,6 @@ print($errors['address'] . '<br>');
     <input type="text" class="form-control" id="address" name="address" <?php if (($errors['address'])) {print 'class="error"';} ?>
            value="<?php if (isset($values['address'])) {print $values['address'];} ?>" />
     </div>
-<br>
 
     <div class="form-group">
         <label for="specialty">Выбрать врача:</label>
