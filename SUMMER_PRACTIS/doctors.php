@@ -1,12 +1,10 @@
-<?php
-header('Cache-Control: no-cache, must-revalidate');
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>task 5</title>
+    <title>Добавление врача</title>
 </head>
 <body>
 
@@ -23,12 +21,18 @@ header('Cache-Control: no-cache, must-revalidate');
     value="<?php if (isset($values['specialty'])) {print $values['specialty'];} ?>" />
     -->
     <select id="specialty" name="specialty" <?php if (isset($errors['specialty'])) {echo 'class="error"';} ?>>
-    <option value="">Выберите специальность</option>
-    <option value="терапевт" <?php echo (isset($values['specialty']) && $values['specialty'] == 'терапевт') ? 'selected' : ''; ?>>Терапевт</option>
-    <option value="кардиолог" <?php echo (isset($values['specialty']) && $values['specialty'] == 'кардиолог') ? 'selected' : ''; ?>>Кардиолог</option>
-    <option value="невролог" <?php echo (isset($values['specialty']) && $values['specialty'] == 'невролог') ? 'selected' : ''; ?>>Невролог</option>
-    <option value="хирург" <?php echo (isset($values['specialty']) && $values['specialty'] == 'хирург') ? 'selected' : ''; ?>>Хирург</option>
+        <option value="Терапевт" <?php echo (isset($values['specialty']) && $values['specialty'] == 'терапевт') ? 'selected' : ''; ?>>Терапевт</option>
+        <option value="Кардиолог" <?php echo (isset($values['specialty']) && $values['specialty'] == 'кардиолог') ? 'selected' : ''; ?>>Кардиолог</option>
+        <option value="Невролог" <?php echo (isset($values['specialty']) && $values['specialty'] == 'невролог') ? 'selected' : ''; ?>>Невролог</option>
+        <option value="Хирург" <?php echo (isset($values['specialty']) && $values['specialty'] == 'хирург') ? 'selected' : ''; ?>>Хирург</option>
+        <option value="Эндокринолог" <?php echo (isset($values['specialty']) && $values['specialty'] == 'хирург') ? 'selected' : ''; ?>>Эндокринолог</option>
+        <option value="Гинекологи" <?php echo (isset($values['specialty']) && $values['specialty'] == 'хирург') ? 'selected' : ''; ?>>Гинекологи</option>
+        <option value="Офтальмолог" <?php echo (isset($values['specialty']) && $values['specialty'] == 'хирург') ? 'selected' : ''; ?>>Офтальмолог</option>
+        <option value="Инфекционист" <?php echo (isset($values['specialty']) && $values['specialty'] == 'хирург') ? 'selected' : ''; ?>>Инфекционист</option>
+        <option value="Онколог" <?php echo (isset($values['specialty']) && $values['specialty'] == 'хирург') ? 'selected' : ''; ?>>Онколог</option>
     </select>
+
+
 
 
     <label for="fee">Стоимость приема:</label>
@@ -42,18 +46,7 @@ header('Cache-Control: no-cache, must-revalidate');
 
 
 
-<!--
-<label for="specialty">Специальность:</label>
-<select id="specialty" name="specialty">
-  <option value="терапевт">Терапевт</option>
-  <option value="хирург">Хирург</option>
-  <option value="офтальмолог">Офтальмолог</option>
-   Добавьте другие варианты специальностей по аналогии -->
-</select>
-
-
 <?php
-
 if (!empty($message)) {
     print('<div id="message">');
 // Выводим все сообщения.
