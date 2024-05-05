@@ -49,6 +49,10 @@ footer {
     width:100%;
 }
 
+
+
+
+
 .top-header {
     display: flex;
     flex-direction: row;
@@ -56,9 +60,48 @@ footer {
     z-index: 999991;
     color: white;
 }
+.top-header__wrap{
+    display: flex;
+    flex-direction: row;
+    margin:5px;
+}
 .location__city-icon:hover svg {
     fill: white;
 }
+.location{
+    margin:auto;
+    //padding:10px;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+.marquee-container {
+    border: 1px solid #152573;
+    border-radius: 15px;
+    padding: 10px;
+    width: 350px;
+    height: 25px;
+    overflow: hidden;
+    position: relative;
+    background: #fff; /* Фон контейнера */
+    box-sizing: border-box;
+}
+
+.marquee-content {
+    position:relative;
+    white-space: nowrap; /* Текст в одну строку */
+    display: block;
+    animation: marquee 10s linear infinite; /* Время анимации и повтор */
+    font-size: 16px;
+    color: blue;
+}
+
+
+
+
 
 .container, .new-container {
     max-width: 1100px;
@@ -96,29 +139,4 @@ footer {
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
-}
-
-@keyframes marquee {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-}
-
-.marquee-container {
-    border: 1px solid #000;
-    border-radius: 15px;
-    padding: 10px;
-    width: 300px;
-    overflow: hidden;
-    position: relative;
-    background: #fff; /* Фон контейнера */
-    box-sizing: border-box;
-}
-
-.marquee-content {
-   // position: absolute;
-    white-space: nowrap; /* Текст в одну строку */
-    display: block;
-    animation: marquee 10s linear infinite; /* Время анимации и повтор */
-    font-size: 16px;
-    color: blue;
 }
