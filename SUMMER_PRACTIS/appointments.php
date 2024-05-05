@@ -72,8 +72,8 @@ print($errors['address'] . '<br>');
     $sql = "SELECT DoctorID,Specialty, FullName FROM Doctors";
     $result = $conn->query($sql);
 
-    echo "<select name='doctor_id'  >";
-    
+    echo "<select name='doctor_id' class='form-control'>";
+
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
@@ -101,7 +101,7 @@ print($errors['address'] . '<br>');
     -->
     <button type="submit"  class="btnn">Записать на прием</button>
     <a href="quintation.php">
-        <button type="button" class="form-control">Сформировать квитанцию об оплате</button>
+        <button type="button" class="btnn">Сформировать квитанцию об оплате</button>
     </a>
 
 
