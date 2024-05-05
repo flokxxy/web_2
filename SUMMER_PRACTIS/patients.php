@@ -6,7 +6,10 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>добавление пациента</title>
+    <link rel="stylesheet" href="style_doctors_patients.css" >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <title>Добавление пациента</title>
 </head>
 <style>
     .error {
@@ -16,34 +19,37 @@
 <body>
 
 <?php
-/*
-print($errors['lastName'] . '<br>');
-print($errors['firstName'] . '<br>');
-print($errors['middleName'] .'<br>');
-print($errors['birthDate'] . '<br>');
-print($errors['address'] . '<br>');
-*/
 ?>
-
+<div class="form-structor">
 <form action="form_patients.php" method="post">
+    <div class="form-group">
     <label for="lastName">Фамилия:</label>
-    <input type="text" id="lastName" name="lastName" <?php if (($errors['lastName'])) {print 'class="error"';} ?>
+    <input type="text" class="form-control" id="lastName" name="lastName" <?php if (($errors['lastName'])) {print 'class="error"';} ?>
            value="<?php if (isset($values['lastName'])) {print $values['lastName'];} ?>" />
-    <label for="firstName">Имя:</label>
-    <input type="text" id="firstName" name="firstName" <?php if (($errors['firstName'])) {print 'class="error"';} ?>
+    </div>
+    <div class="form-group">
+        <label for="firstName">Имя:</label>
+    <input type="text" class="form-control" id="firstName" name="firstName" <?php if (($errors['firstName'])) {print 'class="error"';} ?>
            value="<?php if (isset($values['firstName'])) {print $values['firstName'];} ?>" />
-    <label for="middleName">Отчество:</label>
-    <input type="text" id="middleName" name="middleName" <?php if (($errors['middleName'])) {print 'class="error"';} ?>
+    </div>
+    <div class="form-group">
+        <label for="middleName">Отчество:</label>
+    <input type="text" class="form-control" id="middleName" name="middleName" <?php if (($errors['middleName'])) {print 'class="error"';} ?>
            value="<?php if (isset($values['middleName'])) {print $values['middleName'];} ?>" />
-    <label for="birthDate">Дата рождения:</label>
-    <input type="date" id="birthDate" name="birthDate" <?php if (($errors['birthDate'])) {print 'class="error"';} ?>
+    </div>
+    <div class="form-group">
+        <label for="birthDate">Дата рождения:</label>
+    <input type="date" class="form-control" id="birthDate" name="birthDate" <?php if (($errors['birthDate'])) {print 'class="error"';} ?>
            value="<?php if (isset($values['birthDate'])) {print $values['birthDate'];} ?>" />
-    <label for="address">Адрес:</label>
-    <input type="text" id="address" name="address" <?php if (($errors['address'])) {print 'class="error"';} ?>
+    </div>
+    <div class="form-group">
+        <label for="address">Адрес:</label>
+    <input type="text" class="form-control" id="address" name="address" <?php if (($errors['address'])) {print 'class="error"';} ?>
            value="<?php if (isset($values['address'])) {print $values['address'];} ?>" />
-    <button type="submit">Добавить пациента</button>
+    </div>
+        <button type="submit" class="btnn">Добавить пациента</button>
 </form>
-
+</div>
 <br>
 
 </body>
