@@ -94,8 +94,9 @@ print($errors['address'] . '<br>');
     <label for="date">Дата приема:</label>
     <input type="datetime-local" class="form-control" id="date" name="date" >
     </div>
-    <br>
+    
     <button type="submit"  class="btnn">Записать на прием</button>
+<br>
     <a href="quintation.php">
         <button type="button" class="btnn">Сформировать квитанцию об оплате</button>
     </a>
